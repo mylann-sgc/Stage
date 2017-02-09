@@ -1,8 +1,10 @@
-\documentclass[11pt,a4paper,twoside]{article}
+\documentclass[11pt,a4paper,oneside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{charter}
+\usepackage{hyperref}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Mylann Dupuy}
 \title{Rapport de stage}
@@ -18,13 +20,15 @@ L'objectif est de déployer les logiciels utilisés couramment et de les mettre 
 \subsection{Cahier des charges}
 bla bla
 \\
-
 \subsection{Contraintes}
-bla bla
-\\
+Lors du déploiement, les postes sont constamment utilisé par le personnel du centre. Pour pouvoir intervenir, il faut appelé la personne présente sur le poste et intervenir à distance avec \textbf{TightVNC}.
 \subsection{Matériels disponible}
-bla bla
-\\
+\begin{itemize}
+	\item \textbf{1 Ordinateur} pour administrer et surveiller OCS.
+	\item \textbf{1 Serveur virtuel} sous 	\textbf{Debian 8.7}.
+	\item \textbf{1 Serveur de stockage}  pour l'accès aux exécutables prévus pour les scripts. 
+
+\end{itemize}
 \section{Solutions}
 \subsection{Comparaison}
 bla bla
