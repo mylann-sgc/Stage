@@ -14,53 +14,73 @@
 \tableofcontents
 \newpage
 \section{Contexte}
-Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour déployer diverses logiciels.
+Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de d{\'e}ploiement pour d{\'e}ployer diverses logiciels.
 \section{Objectif(s)}
-L'objectif est de déployer les logiciels utilisés couramment et de les mettre à jour. Le système doit fonctionner avant la fin du stage. 
+L'objectif est de d{\'e}ployer les logiciels utilis{\'e}s couramment et de les mettre à jour. Le système doit fonctionner avant la fin du stage. 
 \subsection{Cahier des charges}
 bla bla
 \\
 \subsection{Contraintes}
-Lors du déploiement, les postes sont constamment utilisé par le personnel du centre. Pour pouvoir intervenir, il faut appelé la personne présente sur le poste et intervenir à distance avec \textbf{TightVNC}.
-\subsection{Matériels disponible}
+Lors du d{\'e}ploiement, les postes sont constamment utilis{\'e} par le personnel du centre. Pour pouvoir intervenir, il faut appel{\'e} la personne pr{\'e}sente sur le poste et intervenir à distance avec \textbf{TightVNC}.
+\subsection{Mat{\'e}riels disponible}
 \begin{itemize}
 	\item \textbf{1 Ordinateur} pour administrer et surveiller OCS.
 	\item \textbf{1 Serveur virtuel} sous 	\textbf{Debian 8.7}.
-	\item \textbf{1 Serveur de stockage}  pour l'accès aux exécutables prévus pour les scripts. 
+	\item \textbf{1 Serveur de stockage}  pour l'accès aux ex{\'e}cutables pr{\'e}vus pour les scripts. 
 
 \end{itemize}
 \section{Solutions}
 \subsection{Comparaison}
-En farfouillant sur Internet et aussi avec mes connaissances personnelles, j'ai recensé 5 solutions de déploiement mais dans notre contexte, il y a 2 solutions qui seront comparées \\ \\
-\begin{tabular}{|p{3.1cm}|p{7cm}|p{7cm}|}
+En farfouillant sur Internet et aussi avec mes connaissances personnelles, j'ai recens{\'e} 5 solutions de d{\'e}ploiement mais dans notre contexte, il y a 2 solutions qui seront compar{\'e}es \\ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tabular}{|p{3.1cm}|p{6.5cm}|p{6.5cm}|}
 	\hline
-	Solutions & Avantages & Inconvénients \\
+	\centering Solutions : & \centering Avantages : & Inconv{\'e}nients : \\
 	\hline
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	\centering OCS Inventory NG  & \begin{itemize}
 							\item Faible utilisation de la bande passante 
-							\item Plugins pour GLPI
-							\item Plugins pour GLPI
-							\item Supervision des logiciels installé
+							\item Plugins pour GLPI							
+							\item Supervision des logiciels install{\'e}
 							\item Logiciel libre disponible sous Windows Server / Client
 							\item Inventaire complet des postes							
-						\end{itemize} & \\
+						\end{itemize} & \begin{itemize}
+												\item Wiki non à jour  
+												\item Paquets Debian en version 2.0.5																			\end{itemize} \\
+	\hline
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\centering WAPT  & \begin{itemize}
+							\item Automatisation d'installation, MAJ et suppressions logiciels 
+							\item Centralisation graphique du d{\'e}ploiement
+							\item Facilit{\'e} pour les MAJ 
+							\item Gestion des d{\'e}pendances
+							\item Logiciel libre													
+						\end{itemize} & \begin{itemize}
+												\item Configuration à faire pour faire cohabiter WSUS et WAPT 
+												\item Packages propre à WAPT (.wapt)
+												\item Suite Microsoft Office non Disponible
+												\item Supervision des logiciels install{\'e}
+												\item Cr{\'e}ation de paquets + ou - complèxe
+												\item Certains logiciels ne sont plus à jour			
+										\end{itemize} \\
 	\hline	
 \end{tabular}
-\subsection{Solution Choisie}
-bla bla
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\\ \\
+Nous avons décidés de mettre en place OCS Inventory NG 2.3 car les logiciels qui doivent être déployer seront facilement mis à jour contrairement à WAPT.
 \\
 \subsection{Mise en \oe{}uvre}
 bla bla
 \\
 \section{Principe de fonctionnement}
-%Schéma
-%Résumé d'utilisation d'OCS
-% Utilisation du Module de déploiement
-\subsection{Scripts utilisés}
+%Sch{\'e}ma
+%R{\'e}sum{\'e} d'utilisation d'OCS
+% Utilisation du Module de d{\'e}ploiement
+\subsection{Scripts utilis{\'e}s}
 bla bla
-\section{Résultat Final}
+\section{R{\'e}sultat Final}
 bla bla
-\subsection{Problèmes rencontrés}
+\subsection{Problèmes rencontr{\'e}s}
 bla bla
 \section{Conclusion}
 bla bla
