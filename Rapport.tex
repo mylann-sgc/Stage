@@ -5,9 +5,10 @@
 \usepackage{graphicx}
 \usepackage{charter}
 \usepackage{hyperref}
+\usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Mylann Dupuy}
-\title{Rapport de stage}
+\title{Rapport de stage -- Powered by \LaTeX}
 \begin{document}
 \maketitle
 \newpage
@@ -100,9 +101,10 @@ Depuis SSH, il fallait installer un serveur Web, un serveur BDD, PHP, Perl et le
 
 S'il manque des paquets, le script d'installation d'OCS Inventory les installera mais dans notre cas, on est derrière un proxy donc vaut mieux tout installer avant. \\
 
-Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site via  et la documentation non à jour.
+Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site via  et la documentation non à jour (cf.Références).
 \newpage
-\section{Principe de fonctionnement}
+\section{Déploiement}
+\subsection{Principe de fonctionnement}
 \begin{figure}[hbtp]
 \includegraphics[scale=0.8]{../../../Downloads/deploy.jpg}
 \caption{Schéma de déploiement}
@@ -114,7 +116,8 @@ L'architecture reste simple à mettre en place, dans l'environnement actuel nous
 \includegraphics[scale=0.5]{../../../Pictures/Script/1.jpg}
 \caption{Etape 1 - Écran de démarrage}
 \end{figure}
-Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'agent OCS sur les Postes Clients avec \textbf{OCS Inventory NG Agent Deployment Tool} puis aussi vérifier si les partages administratifs (C\$) sont bien activés puis passer à \textbf{l'étape 2}.
+Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'agent OCS sur les Postes Clients avec \textbf{OCS Inventory NG Agent Deployment Tool} puis aussi vérifier si les partages administratifs (C\$) sont bien activés. Pour ce faire, il faut faire \textbackslash\textbackslash 192.168.x.x\textbackslash C\$
+ puis passer à \textbf{l'étape 2}. Si ça fonctionne pas, allez dans le Pare-Feu et autorisez le \textbf{"Partage de Fichiers et d'imprimante"}.
 \newpage
 
 \begin{figure}[hbtp]
@@ -172,11 +175,100 @@ Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il inst
 Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet de la machine et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
 
 En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Le nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
+\subsection{Scripts}
 
- 
-%Résumé d'utilisation d'OCS
-% Utilisation du Module de déploiement
-bla bla
+OCS Inventory peut déployer des paquets SEULEMENT s'ils sont en ".zip" ou ".tar.gz" donc avant de déployer un paquets, on va créer un script qui va lancer les installations des logiciels de manière silencieuse et avec des paramètres spécifiques.
+\\	
+Ce sont des scripts Batch qui ont été réalisés pour CHACUN des logiciels. Le contenu est quasiement le même sauf pour la désinstallation et l'installation qui demandent des options spécifiques (No reboot, silencieux, aucune interaction avec l'utilisateur).
+\\
+Lors de l'installation des logiciels, il ne faut pas que cela perturbe le travail de l'utilisateur donc il faut AUCUNE interaction donc pas de boîte de dialogue ni d'autorisation utilisateur ni de "Pop-Up" et SURTOUT PAS de redémarrage surtout dans ce contexte.
+\newpage
+On va prendre l'exemple de Mozilla Firefox avec le code disponible :
+\\
+\textbf{Voir en annexes les différentes commandes}
+  
+
+\begin{lstlisting}[language=C]
+@echo off
+1	runas /profile /user:Administrateur install.bat < pass.txt
+	
+3	sc config UI0Detect start= disabled
+4	sc stop UI0Detect
+
+6	"C:\Program Files (x86)\Mozilla Maintenance Service\Uninstall.exe" 
+7	/verysilent /SUPPRESSMSGBOXES /NORESTART
+	
+9	"C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe" 
+10	/verysilent /SUPPRESSMSGBOXES /NORESTART
+	
+11	"C:\Program Files\Mozilla Firefox\uninstall\helper.exe" 
+12	/verysilent /SUPPRESSMSGBOXES /NORESTART	
+
+14	"\\ficserv\allusers\Logiciels\firefox\Firefox Setup 51.0.1.exe" 
+15	/INI=\\ficserv\allusers\Logiciels\firefox\config.ini 
+16	/verysilent /SUPPRESSMSGBOXES /NORESTART
+	
+18	powershell -executionpolicy Bypass -file "\\192.168.10.28\allusers
+19	\Logiciels\01 - Install Mat\Script\Firefox\Firefox.ps1"	
+	
+21	"%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" 
+22	/SetAsDefaultAppUser
+	
+goto end
+:end	
+\end{lstlisting}
+\begin{itemize}
+	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
+	\item Ligne 3 - 4: Il faut désactiver le services U10Detect (cf.Références) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Références). 
+	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de Mozilla Firefox et de Mozilla Maintenance Service.
+	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de Mozilla Firefox en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tout les messages qui peuvent apparaitre et ne pas redémarrer
+	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script maison en PowerShell.
+	\item Ligne 21 - 22 : Faire de Mozilla Firefox le navigateur par défaut avec le paramètre
+\end{itemize}
+\newpage
+\subsection{Déploiement}
+\subsubsection{Création}
+Après que le script soit fait, il reste à créer l'archive en ".zip" avec le fichier ".txt" qui contient le mot de passe et le script Batch. En général, l'archive fait moins de 5 Kilo-Octet. Quand l'archive à bien été faite, il y a plu qu'a créer la fiche du déploiement en se connectant sur l'interface Web d'OCS et aller dans "Deployment" puis "Build"
+\\
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.7]{../../../Pictures/Script/Deploiement1.PNG}
+\caption{Accès Creation Déploiement}
+\end{figure}
+
+Après avoir cliqué dessus, la page "Package Builder" s'ouvre en y montrant un liste à remplir
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{../../../Pictures/Script/Deploiement2.PNG}
+\caption{Information Déploiement}
+\end{figure}
+
+Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), executer ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.6]{../../../Pictures/Script/Deploiement3.PNG}
+\caption{Résumé de création}
+\end{figure}
+
+La page finale de création du paquet montre le poids du paquet, le nombre de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et le temps estimé pour le déploiement (qui affiche souvent rien)
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.6]{../../../Pictures/Script/Deploiement4.PNG}
+\caption{Confirmation de Création du paquets}
+\end{figure}
+
+Dès que la confirmation apparait, cela veut dire que le paquets est bien créer dans le répertoire "/var/lib/ocsinventory-reports/download/......". On peut voir que tout les paquets de déploiement crées appartienne à "www-data"
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.7]{../../../Pictures/Script/Deploiement5.PNG}
+\caption{Résultat coté serveur}
+\end{figure}
+\newpage
+\subsubsection{Activation}
+\newpage
 \section{Résultat Final}
 bla bla
 \subsection{Problèmes rencontrés}
@@ -196,4 +288,10 @@ Wiki d'OCS Inventory :\url{http://wiki.ocsinventory-ng.org/index.php?title=Docum
 OCS Inventory NG Agent Deployment Tool :
 \\
 PSEXEC :
+\\
+RUNAS :
+\\
+Commande SC :
+\\
+U10Detect :
 \end{document}
