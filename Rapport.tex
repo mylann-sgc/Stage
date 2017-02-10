@@ -238,28 +238,29 @@ Après que le script soit fait, il reste à créer l'archive en ".zip" avec le f
 
 Après avoir cliqué dessus, la page "Package Builder" s'ouvre en y montrant un liste à remplir
 
+Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), executer ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{../../../Pictures/Script/Deploiement2.PNG}
+\includegraphics[scale=0.4]{../../../Pictures/Script/Deploiement2.PNG}
 \caption{Information Déploiement}
 \end{figure}
+\newpage
 
-Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), executer ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
+La page finale de création du paquet montre le poids du paquet, le nombre de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et le temps estimé pour le déploiement (qui affiche souvent rien)
+
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{../../../Pictures/Script/Deploiement3.PNG}
 \caption{Résumé de création}
 \end{figure}
 
-La page finale de création du paquet montre le poids du paquet, le nombre de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et le temps estimé pour le déploiement (qui affiche souvent rien)
+Dès que la confirmation apparait, cela veut dire que le paquets est bien créer dans le répertoire "/var/lib/ocsinventory-reports/download/......". On peut voir que tout les paquets de déploiement crées appartienne à "www-data"
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{../../../Pictures/Script/Deploiement4.PNG}
 \caption{Confirmation de Création du paquets}
 \end{figure}
-
-Dès que la confirmation apparait, cela veut dire que le paquets est bien créer dans le répertoire "/var/lib/ocsinventory-reports/download/......". On peut voir que tout les paquets de déploiement crées appartienne à "www-data"
 
 \begin{figure}[hbtp]
 \centering
@@ -268,7 +269,17 @@ Dès que la confirmation apparait, cela veut dire que le paquets est bien créer
 \end{figure}
 \newpage
 \subsubsection{Activation}
-\newpage
+
+Après avoir eu la ocnfirmation de la création du paquet, il reste à l'activer pour pouvoir le déployer sur les postes. Et pour ce faire, il faut faire la même opération de tout à l'heure mais cette fois, il faut cliquer sur "Activate"
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.7]{../../../Pictures/Script/Deploiement1.PNG}
+\caption{Accès Activation Paquet}
+\end{figure}
+
+Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant la liste des paquets disponibles pour le déploiement 
+
 \section{Résultat Final}
 bla bla
 \subsection{Problèmes rencontrés}
