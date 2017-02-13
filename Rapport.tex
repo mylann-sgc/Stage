@@ -8,17 +8,22 @@
 \usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Mylann Dupuy}
-\title{Rapport de stage -- Powered by \LaTeX}
+\title{Rapport de stage --  \\ Powered by \LaTeX}
 \begin{document}
 \maketitle
 \newpage
 \tableofcontents
 \newpage
 \section{Contexte}
-Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour déployer diverses logiciels.
+Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour installer et/ou mettre à jour les logiciels existants.
+
 \section{Objectif(s)}
 L'objectif est de déployer les logiciels utilisés couramment et de les mettre à jour. Le système doit fonctionner avant la fin du stage. 
+
 \subsection{Cahier des charges}
+Il fallait déployé l'ensemble des postes sur les réseaux du Centre sans que cela dérange les utilisateurs, il fallait donc mettre ne place un système de déploiement pour mettre à jour ou installer des logiciels manquants sur les postes sans déranger l'utilisateur.\\ \\
+\textbf{Voici les logiciels à déployer :}\\
+
 \begin{itemize}
 	\item Adobe Flash Player 24
 	\item Adobe Reader DC
@@ -26,24 +31,26 @@ L'objectif est de déployer les logiciels utilisés couramment et de les mettre 
 	\item Mozilla Firefox
 	\item Mozilla Thunderbird
 	\item PDFCreator
-	\item 7-Zip \\
+	\item 7-Zip
 \end{itemize}
 
-Tout les logiciels doivent êtres installés avec des paramètres spécifiques !
-\\
+\begin{center}
+\textbf{Tout les logiciels doivent êtres installés avec des paramètres spécifiques !}
+\end{center}
 \subsection{Contraintes}
-Lors du déploiement, les Postes sont constamment utilisé par le personnel du centre. Pour pouvoir intervenir, il faut appelé la personne présente sur le Poste et intervenir à distance avec \textbf{TightVNC}.
+Lors du déploiement, les postes sont constamment utilisé par le personnel du centre. Pour pouvoir intervenir, il faut appelé la personne présente sur le poste et intervenir à distance avec \textbf{TightVNC}.
+
 \subsection{Matériels disponible}
 \begin{itemize}
 	\item \textbf{1 Ordinateur} pour administrer et surveiller OCS.
-	\item \textbf{1 Serveur virtuel} sous 	\textbf{Debian 8.7}.
+	\item \textbf{1 Serveur virtuel} sous \textbf{Debian 8.7}.
 	\item \textbf{1 Serveur de stockage}  pour l'accès aux exécutables prévus pour les scripts. 
-
 \end{itemize}
 \newpage
+
 \section{Solutions}
 \subsection{Comparaison}
-En farfouillant sur Internet et aussi avec mes connaissances personnelles, j'ai recensé 5 solutions de déploiement mais dans notre contexte, il y a 2 solutions qui seront comparées \\ \\
+En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai recensé 4 solutions de déploiement mais dans notre contexte, il y a 2 solutions qui seront comparées car les 2 autres ne sont plus à jour. Il s'agissait de \textbf{WSUS Package Publisher} et de \textbf{Local Update Publisher} \\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular}{|p{3.1cm}|p{6.5cm}|p{6.5cm}|}
 	\hline
@@ -79,8 +86,8 @@ En farfouillant sur Internet et aussi avec mes connaissances personnelles, j'ai 
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \\ \\
-Nous avons décidés de mettre en place \textbf{OCS Inventory NG 2.3} (cf.Références) car les logiciels qui doivent être déployer seront facilement mis à jour contrairement à WAPT.
-\\
+Nous avons décidés de mettre en place \textbf{OCS Inventory NG 2.3} (cf.Références) car les logiciels qui doivent être déployer seront facilement mis à jour contrairement à WAPT qui à certains logiciels non à jour voir même abandonner.
+
 \subsection{Mise en \oe{}uvre}
 \subsubsection{Avant de commencer} 
 Nous avons créer une machine virtuelle sous Hyper-V (cf.Références) en lui mettant comme ressources :\\ \begin{itemize}
@@ -279,34 +286,130 @@ Après avoir eu la confirmation de la création du paquet, il reste à l'activer
 \caption{Accès Activation Paquet}
 \end{figure}
 
-Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant la liste des paquets disponibles pour le déploiement 
+Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant la liste des paquets disponibles pour le déploiement
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{../../../Pictures/Script/Activation2.PNG}
+\caption{Accès Activation Paquet}
+\end{figure}
+ 
+Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affiché différemment, il apparait en "Noir" alors que les autres apparaissent en "Gris" car ils ont été activés et pas le nôtre. Pour ce faire, il faut sur la "Flèche en double sens" à droite de l'écran. Suite à ça, il demande confirmation pour l'activation et ensuite notre paquet devient "Grisé" comme les autres.
 \newpage
+
 \section{Résultat Final}
-bla bla
+Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à Windows Installer qui n'a pas les droits requis pouu l'installation alors qu'on démarre le script en utilisateur "Administrateur"
 \subsection{Problèmes rencontrés}
-bla bla
+Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les postes ou sinon c'était un service WINDOWS qui posait problème.
+\\
+\begin{itemize}
+\item Windows 7 bloque le déploiement des paquets à cause d'un service de "Détection de services interactifs".
+\item Mozilla Maintenance Service posait problème quand le service de "Détection de Services Interactifs" s'activer, il affichait une boite de dialogue à l'utilisateur.
+\item PDFCreator mettait son imprimante par défaut mais avec un import/export du registre pendant le script, l'imprimante d'origine se remet par défaut (en pratique au bureau informatique).
+\item  Adobe Reader se désinstalle mais ce réinstalle pas car il n'a pas les droits suffisants sur certains postes (MSIInstaller en cause) !!!
+\item PDFCreator demande à faire redémarrer le PC.
+\item L'utilisation de PSEXEC va créer un dossier utilisateur sur l'ordinateur distant... Résolu avec un script qui force le déploiement de l'inventaire OCS et supprime le dossier utilisateur (cf.Annexes).
+\item Suite à la mise à jour de Firefox, les PDF s'ouvrent sur une nouvelle page au lieu d'un nouvelle onglet.
+\item A la suite du déploiement, les raccourcis .URL ne pointent plu vers le navigateur. Résolu par un script Powershell (Cf.Annexes)
+\end{itemize}
+
 \section{Conclusion}
-bla bla
+Durant les 8 semaines de stage, j'ai pu apprendre et travailler au sein d'une d'équipe sur un ensemble de postes en mettant en place un système de déploiement qui servira (ou non) au fil du temps. En cherchant des solutions de déploiement, j'ai pu connaitre autre chose qu'OCS Inventory NG (Cf.Solutions).
+
+J'ai découvert aussi les contraintes qu'il pouvait y avoir en labo et lors d'un déploiement réel sur le réseau du centre en rencontrant des problèmes résolus ou non.
+\newpage
 \section{Annexes}
+\subsection{Scripts}
+Script avec MSIEXEC (pour les package .msi).
+\begin{lstlisting}[language=C]
+1 @echo off
+
+3	runas /noprofile /user:Administrateur install.bat < pass.txt
+
+5 Desactivation du service de Detection de services interactifs
+6	sc config UI0Detect start= disabled
+7	sc stop UI0Detect
+
+9 Desinstallation de Flash Player (tous modules)
+10	"\\ficserv\allusers\Logiciels\flash player\
+11	uninstall_flash_player.exe" -uninstall
+
+13 Installation de Flash Player
+14	msiexec /i "\\ficserv\allusers\Logiciels\
+15	flash player\install_flash_player_24_active_x.msi" /quiet /norestart
+	
+17	msiexec /i "\\ficserv\allusers\Logiciels\
+18	flash player\install_flash_player_24_plugin.msi" /quiet /norestart
+
+20 Fichier de Configuration d'Adobe Flash 
+21	xcopy "\\ficserv\allusers\Logiciels\
+22	flash player\mms.cfg" /Y C:\windows\syswow64\macromed\flash\ 
+
+24 Reactivation du Service de Detection de services interactifs
+25	sc config UI0Detect start= demand
+26	sc stop UI0Detect
+
+28 goto end
+29 :end
+\end{lstlisting}
+
+Le script est à peu près le même que pour celui de Mozilla Firefox crée précédemment sauf que cette fois, il s'agit d'un package .MSI.\\
+En détail sur les lignes de désinstallation et d'installation : (Cf.Annexes) \\
+\begin{itemize}
+\item Ligne 10 : L'exécutable .exe permet de supprimer TOUTES les versions d'Adobe Flash Player présente sur 			l'ordinateur de manière silencieuse vu qu'on lui ajoute le paramètre "-uninstall" \\
+
+\item Ligne 13 - 14 : Le package .MSI démarrera en mode silencieux et sans redémarrer comme indiquer avec les paramètres "/quiet" et "/norestart"
+\end{itemize}
+\newpage
+Script PowerShell pour changer les raccourcis Internet des postes clients
+
+\begin{lstlisting}[language=C]
+
+$ProfilesDirectory = (get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\
+CurrentVersion\ProfileList" -Name ProfilesDirectory).ProfilesDirectory
+
+Get-ChildItem -Path $ProfilesDirectory -filter DMC.lnk 
+-recurse -Force | foreach ($_) {Remove-Item $_.FullName ; Copy-Item -Path
+ \\ficserv\allusers\dmc\DMC.lnk -Destination $_.DirectoryName}
+
+Stop-Process -Name powershell
+
+\end{lstlisting}
+\textbf{Commentaires :}\\
+\begin{itemize}
+\item \textbf{Variable \$ProfileDirectory :} Récupère à partir du registre, les répertoires Utilisateurs existants dans le Disque Local C: 
+\item \textbf{Variable Get-ChildItem :} Depuis la variable \$ProfilesDirectory, le script va filtré dans tout les dossiers utilisateur l'icône "DMC.lnk" en la supprimant (si trouvé) et en copiant depuis le serveur la nouvelle icône fonctionnelle 
+\end{itemize}
+
+\subsection{Définitions}
+\textbf{Microsoft Hyper-V :} Virtualisation de machines en ayant le service d'installer sur un Windows 8.x minimum, fonctionne à peu près comme VirtualBox
+\\ \\
+\textbf{PSEXEC :} PsExec est un outil en ligne de commande fournit dans la suite PsTools de chez Sysinternals. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le serveur distant.
+\\ \\
+\textbf{RUNAS :} La commande RUNAS permet à un utilisateur d'exécuter des outils et des programmes spécifiques avec des autorisations différentes de celles attribuées à l'ouverture de session; par exemple, si vous désirez exécuter un programme nécessitant des droits d'Administrateur alors que vous n'êtes pas connecté en tant que tel.
+\\ \\
+\textbf{Commande SC :} L'utilitaire de contrôle des services SC est un puissant outil en ligne de commande permettant de gérer les services Windows. Cet outil permet également d'arrêter et de démarrer rapidement les services afin de résoudre les problèmes.
+\\ \\
+\textbf{U10Detect :}
+\\ \\
+\textbf{MSIEXEC :}
+\newpage
 
 \section{Références}
+\begin{itemize}
+\item \textbf{Adobe :} \url http://www.adobe.com/fr/ 
+\item \textbf{Java :} \url https://www.java.com/fr/
+\item \textbf{Mozilla :} \url https://www.mozilla.org/fr/
+\item \textbf{PDFCreator :} \url http://www.pdfforge.org/pdfcreator
+\item \textbf{Debian 8.x :} \url https://www.debian.org/index.fr.html 
+\item \textbf{OCS Inventory NG :} \url www.ocsinventory-ng.org/fr/
+\item \textbf{WAPT :} \url {https://dev.tranquil.it/wiki/WAPT_-_apt-get_pour_Windows}
+\item \textbf{WSUS Package Publisher :} \url https://wsuspackagepublisher.codeplex.com/
+\item \textbf{Local Update Publisher :} \url http://localupdatepubl.sourceforge.net/fr/index.html
+\item \textbf{Wiki d'OCS Inventory :} \url{http://wiki.ocsinventory-ng.org/index.php?title=Documentation:Server/fr}
+\item \textbf{OCS Inventory NG Agent Deployment Tool :} \url http://wiki.ocsinventory-ng.org/index.php?title=Documentation:DeployTool/fr
+\end{itemize}
 
-Microsoft Hyper-V :
-\\
-OCS Inventory NG 2.3 :\url{www.ocsinventory-ng.org/fr/}
-\\
-Wiki d'OCS Inventory :\url{http://wiki.ocsinventory-ng.org/index.php?title=Documentation:Server/fr}
-\\
-OCS Inventory NG Agent Deployment Tool :
-\\
-PSEXEC :
-\\
-RUNAS :
-\\
-Commande SC :
-\\
-U10Detect :
+
 \newpage
-\section{bla bla}
-fdfgd
 \end{document}
