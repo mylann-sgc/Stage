@@ -147,7 +147,7 @@ Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce fa
  \caption{Etape 3 - La sélection des Postes}
  \end{figure}
   
-\textbf{l'étape 3} consiste à définir une plage IP  ou à sélectionner le(s) Poste(s) qui auront l'agent OCS. Dans notre cas, on avait défini une plage IP sur l'ensemble du réseau CJB. Après la selection des Postes, on passe à \textbf{l'étape 4}.
+\textbf{L'étape 3} consiste à définir une plage IP  ou à sélectionner le(s) Poste(s) qui auront l'agent OCS. Dans notre cas, on avait défini une plage IP sur l'ensemble du réseau CJB. Après la selection des Postes, on passe à \textbf{l'étape 4}.
 \newpage
 
 \begin{figure}[hbtp]
@@ -158,7 +158,7 @@ Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce fa
 
 C'est à partir de là qu'on va faire la configuration de l'agent OCS qui sera mis en place lors du déploiement.  
 \begin{enumerate}
-\item Il faut lui donner le répertoire où se trouve le fichier d'installation de l'agent.
+\item Il faut lui donner le répertoire où se trouve le fichier d'installation de l'agent sur le poste Administrateur.
 \item Les plugins ou fichier à copier sur le Poste Client.
 \item Le certificat du serveur si SSL est activé sur le serveur OCS.
 \item L'adresse URL du serveur OCS.
@@ -183,17 +183,17 @@ Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni
 \end{figure}
 
 Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il installe l'agent OCS sur les Postes Clients. L'outil de déploiement peut déployer les Postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'opération sur 10 Postes maximum. \\ 
-\textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU.}
+\textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU du poste Administrateur.}
 \newpage
 \subsection{Interface Web OCS Inventory}
-Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet de la machine et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
+Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet du poste et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
 
 En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Le nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
 \subsection{Scripts}
 
 OCS Inventory peut déployer des paquets SEULEMENT s'ils sont en ".zip" ou ".tar.gz" donc avant de déployer un paquets, on va créer un script qui va lancer les installations des logiciels de manière silencieuse et avec des paramètres spécifiques.
 \\	
-Ce sont des scripts Batch qui ont été réalisés pour CHACUN des logiciels. Le contenu est quasiement le même sauf pour la désinstallation et l'installation qui demandent des options spécifiques (No reboot, silencieux, aucune interaction avec l'utilisateur).
+Ce sont des scripts Batch qui ont été réalisés pour CHACUN des logiciels. Le contenu est quasiment le même sauf pour la désinstallation et l'installation qui demandent des options spécifiques (No reboot, silencieux, aucune interaction avec l'utilisateur).
 \\
 Lors de l'installation des logiciels, il ne faut pas que cela perturbe le travail de l'utilisateur donc il faut AUCUNE interaction donc pas de boîte de dialogue ni d'autorisation utilisateur ni de "Pop-Up" et SURTOUT PAS de redémarrage surtout dans ce contexte.
 \newpage
@@ -233,7 +233,7 @@ goto end
 \end{lstlisting}
 \begin{itemize}
 	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
-	\item Ligne 3 - 4: Il faut désactiver le services U10Detect (cf.Références) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Références). 
+	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Références) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Références). 
 	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de Mozilla Firefox et de Mozilla Maintenance Service.
 	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de Mozilla Firefox en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tout les messages qui peuvent apparaitre et ne pas redémarrer
 	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script maison en PowerShell.
@@ -252,7 +252,7 @@ Après que le script soit fait, il reste à créer l'archive en ".zip" avec le f
 
 Après avoir cliqué dessus, la page "Package Builder" s'ouvre en y montrant un liste à remplir
 
-Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), executer ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
+Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), exécuter ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.4]{../../../Pictures/Script/Deploiement2.PNG}
@@ -304,7 +304,7 @@ Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affic
 \newpage
 
 \section{Résultat Final}
-Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à Windows Installer qui n'a pas les droits requis pouu l'installation alors qu'on démarre le script en utilisateur "Administrateur"
+Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à "Windows Installer" qui n'a pas les droits requis pouu l'installation alors qu'on démarre le script en utilisateur "Administrateur"
 \subsection{Problèmes rencontrés}
 Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les Postes ou sinon c'était un service WINDOWS qui posait problème.
 \\
