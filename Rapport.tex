@@ -19,10 +19,10 @@
 Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour installer et/ou mettre à jour les logiciels existants.
 
 \section{Objectif(s)}
-L'objectif est de déployer les logiciels utilisés couramment et de les mettre à jour. Le système doit fonctionner avant la fin du stage. 
+L'objectif est de déployer les logiciels utilisés couramment et de les mettre à jour sous Windows Server ou sous Linux Server. Le système doit fonctionner avant la fin du stage. 
 
 \subsection{Cahier des charges}
-Il fallait déployé l'ensemble des postes sur les réseaux du Centre sans que cela dérange les utilisateurs, il fallait donc mettre ne place un système de déploiement pour mettre à jour ou installer des logiciels manquants sur les postes sans déranger l'utilisateur.\\ \\
+Il fallait déployé l'ensemble des Postes sur les réseaux du Centre Jean Bernard - Clinique Victor Hugo sans que cela dérange les utilisateurs, il faut donc mettre en place un système de déploiement pour mettre à jour ou installer des logiciels manquants sur les Postes.\\ \\
 \textbf{Voici les logiciels à déployer :}\\
 
 \begin{itemize}
@@ -39,13 +39,15 @@ Il fallait déployé l'ensemble des postes sur les réseaux du Centre sans que c
 \textbf{Tout les logiciels doivent êtres installés avec des paramètres spécifiques !}
 \end{center}
 \subsection{Contraintes}
-Lors du déploiement, les postes sont constamment utilisé par le personnel du centre. Pour pouvoir intervenir, il faut appelé la personne présente sur le poste et intervenir à distance avec \textbf{TightVNC}.
+Lors du déploiement, les Postes sont constamment utilisé par le personnel du centre. Pour pouvoir intervenir, il faut appelé la personne présente sur le poste et intervenir à distance avec \textbf{TightVNC}.\\
+
+Tout les Postes n'ont pas la même fonction donc il faut mettre à jour les logiciels déjà présents.
 
 \subsection{Matériels disponible}
 \begin{itemize}
 	\item \textbf{1 Ordinateur} pour administrer et surveiller OCS.
-	\item \textbf{1 Serveur virtuel} sous \textbf{Debian 8.7}.
-	\item \textbf{1 Serveur de stockage}  pour l'accès aux exécutables prévus pour les scripts. 
+	\item \textbf{1 Serveur virtuel} sous \textbf{Debian 8.7} ou \textbf{Windows Server 201x}.
+	\item \textbf{1 Serveur de stockage} pour l'accès aux exécutables prévus pour les scripts. 
 \end{itemize}
 \newpage
 
@@ -62,8 +64,8 @@ En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai rec
 							\item Faible utilisation de la bande passante 
 							\item Plugins pour GLPI							
 							\item Supervision des logiciels installé
-							\item Logiciel libre disponible sous Windows Server / Client
-							\item Inventaire complet des postes							
+							\item Logiciel libre disponible sous Windows Server/Client ou Linux Server/Client
+							\item Inventaire complet des Postes							
 						\end{itemize} & \begin{itemize}
 												\item Wiki non à jour  
 												\item Paquets Debian en version 2.0.5																			\end{itemize} \\
@@ -78,7 +80,7 @@ En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai rec
 						\end{itemize} & \begin{itemize}
 												\item Configuration à faire pour faire cohabiter WSUS et WAPT 
 												\item Packages propre à WAPT (.wapt)
-												\item Suite Microsoft Office non Disponible
+												\item Suite Microsoft Office non disponible
 												\item Supervision des logiciels installé
 												\item Création de paquets + ou - complexe
 												\item Certains logiciels ne sont plus à jour			
@@ -88,13 +90,13 @@ En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai rec
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \\ \\
 Nous avons décidés de mettre en place \textbf{OCS Inventory NG 2.3} (cf.Références) car les logiciels qui doivent être déployer seront facilement mis à jour contrairement à WAPT qui à certains logiciels non à jour voir même abandonner.
-
+\newpage
 \subsection{Mise en \oe{}uvre}
 \subsubsection{Avant de commencer} 
 Nous avons créer une machine virtuelle sous Hyper-V (cf.Références) en lui mettant comme ressources :\\ \begin{itemize}
 				\item 1 image ISO de Debian 8.7
 				\item 4 Go de mémoire vive
-				\item 1 C{\oe}ur du processeur
+				\item 1 C{\oe}ur du processeur hôte
 				\item 50 Go d'espace disque
 				\item 1 connexion au réseau CJB	
 \end{itemize} 
@@ -102,7 +104,6 @@ Nous avons créer une machine virtuelle sous Hyper-V (cf.Références) en lui me
 \begin{center}
 \textbf{Cette configuration est hébergée sur le Poste de M.Deshayes}
 \end{center}
-\newpage
 \subsubsection{Installation}
 Lors de l'installation, j'ai tout laissé par défaut sauf le proxy qui à été renseigné. Suite à l'installation, j'ai eu à installer \textbf{openssh-server} pour tout faire via \textbf{PuTTY}.\\
 
@@ -116,7 +117,7 @@ Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site 
 \subsection{Principe de fonctionnement}
 \begin{figure}[hbtp]
 \includegraphics[scale=0.8]{../../../Downloads/deploy.jpg}
-\caption{Schéma de déploiement}
+\caption{Schéma de déploiement (Source : Wiki OCS)}
 \end{figure}
 L'architecture reste simple à mettre en place, dans l'environnement actuel nous avons tout mis sur le même serveur.
 \subsection{Outil de déploiement}
@@ -125,7 +126,7 @@ L'architecture reste simple à mettre en place, dans l'environnement actuel nous
 \includegraphics[scale=0.5]{../../../Pictures/Script/1.jpg}
 \caption{Etape 1 - Écran de démarrage}
 \end{figure}
-Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'agent OCS sur les postes Clients avec \textbf{OCS Inventory NG Agent Deployment Tool} puis aussi vérifier si les partages administratifs (C\$) sont bien activés. Pour ce faire, il faut faire \textbackslash\textbackslash 192.168.x.x\textbackslash C\$
+Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'agent OCS sur les Postes Clients avec \textbf{OCS Inventory NG Agent Deployment Tool} puis aussi vérifier si les partages administratifs (C\$) sont bien activés. Pour ce faire, il faut faire \textbackslash\textbackslash 192.168.x.x\textbackslash C\$
  puis passer à \textbf{l'étape 2}. Si ça fonctionne pas, allez dans le Pare-Feu et autorisez le \textbf{"Partage de Fichiers et d'imprimante"}.
 \newpage
 
@@ -134,15 +135,15 @@ Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'
   \includegraphics[scale=0.5]{../../../Pictures/Script/2.jpg}
   \caption{Etape 2 - La configuration de l'outil de déploiement}
 \end{figure} 
-Dans notre cas, il faut déployer l'agent sur les postes Clients mais pour ce faire, il faut utilisé le module PSEXEC (cf.Annexes) depuis le poste qui va déployer l'agent OCS. Il suffit de mettre le répertoire exacte du module précédemment télécharger depuis le site dans les options d'OCS Inventory NG Agent Deployment Tool. Quand c'est fait, il faut passer à \textbf{l'étape 3}. \\
+Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce faire, il faut utilisé le module PSEXEC (cf.Annexes) depuis le poste qui va déployer l'agent OCS. Il suffit de mettre le répertoire exacte du module précédemment télécharger depuis le site dans les options d'OCS Inventory NG Agent Deployment Tool. Quand c'est fait, il faut passer à \textbf{l'étape 3}. \\
 
 \begin{figure}[hbtp]
  \centering
  \includegraphics[scale=0.7]{../../../Pictures/Script/3.png}
- \caption{Etape 3 - La sélection des postes}
+ \caption{Etape 3 - La sélection des Postes}
  \end{figure}
   
-\textbf{l'étape 3} consiste à définir une plage IP  ou à sélectionner le(s) Poste(s) qui auront l'agent OCS. Dans notre cas, on avait défini une plage IP sur l'ensemble du réseau CJB. Après la selection des postes, on passe à \textbf{l'étape 4}.
+\textbf{l'étape 3} consiste à définir une plage IP  ou à sélectionner le(s) Poste(s) qui auront l'agent OCS. Dans notre cas, on avait défini une plage IP sur l'ensemble du réseau CJB. Après la selection des Postes, on passe à \textbf{l'étape 4}.
 \newpage
 
 \begin{figure}[hbtp]
@@ -169,7 +170,7 @@ Quand cette étape est faite en ayant bien vérifier avant, on passe à \textbf{
 \caption{Etape 5 - L'authentification}
 \end{figure}
 
-Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni en intervenant sur les postes clients, il faut renseigner les informations de connexion du compte "Administrateur" du domaine pour les postes WINDOWS. Si les informations sont exactes, on lance le déploiement à l'étape 6.
+Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni en intervenant sur les Postes Clients, il faut renseigner les informations de connexion du compte "Administrateur" du domaine pour les Postes WINDOWS. Si les informations sont exactes, on lance le déploiement à l'étape 6.
 
 \begin{figure}[hbtp]
 \centering
@@ -177,13 +178,13 @@ Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni
 \caption{Etape 6 - Log de déploiement}
 \end{figure}
 
-Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il installe l'agent OCS sur les postes Clients. L'outil de déploiement peut déployer les postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'operation sur 10 postes maximum. \\ 
+Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il installe l'agent OCS sur les Postes Clients. L'outil de déploiement peut déployer les Postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'opération sur 10 Postes maximum. \\ 
 \textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU.}
 \newpage
 \subsection{Interface Web OCS Inventory}
-Lors que l'agent est bien installé sur les postes Clients, il doivent faire l'inventaire complet de la machine et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
+Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet de la machine et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
 
-En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les postes Clients (TAG, Dernier Inventaire, Le nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
+En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Le nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
 \subsection{Scripts}
 
 OCS Inventory peut déployer des paquets SEULEMENT s'ils sont en ".zip" ou ".tar.gz" donc avant de déployer un paquets, on va créer un script qui va lancer les installations des logiciels de manière silencieuse et avec des paramètres spécifiques.
@@ -263,7 +264,7 @@ La page finale de création du paquet montre le poids du paquet, le nombre de fr
 \caption{Résumé de création}
 \end{figure}
 
-Dès que la confirmation apparait, cela veut dire que le paquets est bien créer dans le répertoire "/var/lib/ocsinventory-reports/download/......". On peut voir que tout les paquets de déploiement crées appartienne à "www-data"
+Dès que la confirmation apparait, cela veut dire que le paquets est bien créer dans le répertoire "/var/lib/OCSinventory-reports/download/......". On peut voir que tout les paquets de déploiement crées appartienne à "www-data"
 
 \begin{figure}[hbtp]
 \centering
@@ -279,7 +280,7 @@ Dès que la confirmation apparait, cela veut dire que le paquets est bien créer
 \newpage
 \subsubsection{Activation}
 
-Après avoir eu la confirmation de la création du paquet, il reste à l'activer pour pouvoir le déployer sur les postes. Et pour ce faire, il faut faire la même opération de tout à l'heure mais cette fois, il faut cliquer sur "Activate"
+Après avoir eu la confirmation de la création du paquet, il reste à l'activer pour pouvoir le déployer sur les Postes. Et pour ce faire, il faut faire la même opération de tout à l'heure mais cette fois, il faut cliquer sur "Activate"
 
 \begin{figure}[hbtp]
 \centering
@@ -301,13 +302,13 @@ Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affic
 \section{Résultat Final}
 Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à Windows Installer qui n'a pas les droits requis pouu l'installation alors qu'on démarre le script en utilisateur "Administrateur"
 \subsection{Problèmes rencontrés}
-Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les postes ou sinon c'était un service WINDOWS qui posait problème.
+Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les Postes ou sinon c'était un service WINDOWS qui posait problème.
 \\
 \begin{itemize}
 \item Windows 7 bloque le déploiement des paquets à cause d'un service de "Détection de services interactifs".
 \item Mozilla Maintenance Service posait problème quand le service de "Détection de Services Interactifs" s'activer, il affichait une boite de dialogue à l'utilisateur.
 \item PDFCreator mettait son imprimante par défaut mais avec un import/export du registre pendant le script, l'imprimante d'origine se remet par défaut (en pratique au bureau informatique).
-\item  Adobe Reader se désinstalle mais ce réinstalle pas car il n'a pas les droits suffisants sur certains postes (MSIInstaller en cause) !!!
+\item  Adobe Reader se désinstalle mais ce réinstalle pas car il n'a pas les droits suffisants sur certains Postes (MSIInstaller en cause) !!!
 \item PDFCreator demande à faire redémarrer le PC.
 \item L'utilisation de PSEXEC va créer un dossier utilisateur sur l'ordinateur distant... Résolu avec un script qui force le déploiement de l'inventaire OCS et supprime le dossier utilisateur (cf.Annexes).
 \item Suite à la mise à jour de Firefox, les PDF s'ouvrent sur une nouvelle page au lieu d'un nouvelle onglet.
@@ -315,9 +316,9 @@ Tout au long de ce stage en mettant en place le déploiement par OCS Inventory N
 \end{itemize}
 
 \section{Conclusion}
-Durant les 8 semaines de stage, j'ai pu apprendre et travailler au sein d'une d'équipe sur un ensemble de postes en mettant en place un système de déploiement qui servira (ou non) au fil du temps. En cherchant des solutions de déploiement, j'ai pu connaitre autre chose qu'OCS Inventory NG (Cf.Solutions).
+Durant les 8 semaines de stage, j'ai pu apprendre et travailler au sein d'une d'équipe sur un ensemble de Postes en mettant en place un système de déploiement qui servira (ou non) au fil du temps. En cherchant des solutions de déploiement, j'ai pu connaitre autre chose qu'OCS Inventory NG (Cf.Solutions).
 
-J'ai découvert aussi les contraintes qu'il pouvait y avoir en labo et lors d'un déploiement réel sur le réseau du centre en rencontrant des problèmes résolus ou non.
+J'ai découvert aussi les contraintes qu'il pouvait y avoir en labo informatique et lors d'un déploiement réel sur le réseau du centre en rencontrant des problèmes résolus ou non.
 \newpage
 \section{Annexes}
 \subsection{Scripts}
@@ -362,7 +363,7 @@ En détail sur les lignes de désinstallation et d'installation : (Cf.Annexes) \
 \item Ligne 13 - 14 : Le package .MSI démarrera en mode silencieux et sans redémarrer comme indiquer avec les paramètres "/quiet" et "/norestart"
 \end{itemize}
 \newpage
-Script PowerShell pour changer les raccourcis Internet des postes clients
+Script PowerShell pour changer les raccourcis Internet des Postes Clients
 
 \begin{lstlisting}[language=C]
 
@@ -385,7 +386,7 @@ Stop-Process -Name powershell
 \subsection{Définitions}
 \textbf{Microsoft Hyper-V :} Virtualisation de machines en ayant le service d'installer sur un Windows 8.x minimum, fonctionne à peu près comme VirtualBox
 \\ \\
-\textbf{PSEXEC :} PsExec est un outil en ligne de commande fournit dans la suite PsTools de chez Sysinternals. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le serveur distant.
+\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le serveur distant.
 \\ \\
 \textbf{RUNAS :} La commande RUNAS permet à un utilisateur d'exécuter des outils et des programmes spécifiques avec des autorisations différentes de celles attribuées à l'ouverture de session; par exemple, si vous désirez exécuter un programme nécessitant des droits d'Administrateur alors que vous n'êtes pas connecté en tant que tel.
 \\ \\
@@ -393,24 +394,21 @@ Stop-Process -Name powershell
 \\ \\
 \textbf{U10Detect :} Active la notification des entrées utilisateur pour les services interactifs, qui active l'accès aux boîtes de dialogue créées par les services interactifs lorsqu'elles apparaissent.
 \\ \\
-\textbf{MSIEXEC :} La commande msiexec utilise des paramètres pour donner à MSI une partie ou l'ensemble des informations pouvant être spécifiées au sein d'une installation interactive. Cela signifie qu'un utilisateur peut créer une configuration d'installation automatique ou semi-automatique réutilisable. Les paramètres peuvent être fournis via la ligne de commande, un fichier de conversion, un fichier de réponse ou une combinaison des trois
+\textbf{MSIEXEC :} La commande \textbf{msiexec} utilise des paramètres pour donner à MSI une partie ou l'ensemble des informations pouvant être spécifiées au sein d'une installation interactive. Cela signifie qu'un utilisateur peut créer une configuration d'installation automatique ou semi-automatique réutilisable. Les paramètres peuvent être fournis via la ligne de commande, un fichier de conversion, un fichier de réponse ou une combinaison des trois
 \newpage
 
 \section{Références}
 \begin{itemize}
-\item \textbf{Adobe :} \url http://www.adobe.com/fr/ 
-\item \textbf{Java :} \url https://www.java.com/fr/
-\item \textbf{Mozilla :} \url https://www.mozilla.org/fr/
-\item \textbf{PDFCreator :} \url http://www.pdfforge.org/pdfcreator
-\item \textbf{Debian 8.x :} \url https://www.debian.org/index.fr.html 
-\item \textbf{OCS Inventory NG :} \url www.ocsinventory-ng.org/fr/
+\item \textbf{Adobe :} \url {http://www.adobe.com/fr/} 
+\item \textbf{Java :} \url {https://www.java.com/fr/}
+\item \textbf{Mozilla :} \url {https://www.mozilla.org/fr/}
+\item \textbf{PDFCreator :} \url {http://www.pdfforge.org/pdfcreator}
+\item \textbf{Debian 8.x :} \url {https://www.debian.org/index.fr.html} 
+\item \textbf{OCS Inventory NG :} \url {www.OCSinventory-ng.org/fr/}
 \item \textbf{WAPT :} \url {https://dev.tranquil.it/wiki/WAPT_-_apt-get_pour_Windows}
-\item \textbf{WSUS Package Publisher :} \url https://wsuspackagepublisher.codeplex.com/
-\item \textbf{Local Update Publisher :} \url http://localupdatepubl.sourceforge.net/fr/index.html
-\item \textbf{Wiki d'OCS Inventory :} \url{http://wiki.ocsinventory-ng.org/index.php?title=Documentation:Server/fr}
-\item \textbf{OCS Inventory NG Agent Deployment Tool :} \url http://wiki.ocsinventory-ng.org/index.php?title=Documentation:DeployTool/fr
+\item \textbf{WSUS Package Publisher :} \url {https://wsuspackagepublisher.codeplex.com/}
+\item \textbf{Local Update Publisher :} \url {http://localupdatepubl.sourceforge.net/fr/index.html}
+\item \textbf{Wiki d'OCS Inventory :} \url{http://wiki.OCSinventory-ng.org/index.php?title=Documentation:Server/fr}
+\item \textbf{OCS Inventory NG Agent Deployment Tool :} \url {http://wiki.ocsinventory-ng.org/index.php?title=Documentation:DeployTool/fr}
 \end{itemize}
-
-
-\newpage
 \end{document}
