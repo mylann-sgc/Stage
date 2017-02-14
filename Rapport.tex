@@ -192,19 +192,17 @@ En arrivant sur l'écran d'inventaire, on remarque les différentes informations
 \subsection{Scripts}
 
 OCS Inventory peut déployer des paquets SEULEMENT s'ils sont en ".zip" ou ".tar.gz" donc avant de déployer un paquets, on va créer un script qui va lancer les installations des logiciels de manière silencieuse et avec des paramètres spécifiques.
-\\	
+\\ \\
 Ce sont des scripts Batch qui ont été réalisés pour CHACUN des logiciels. Le contenu est quasiment le même sauf pour la désinstallation et l'installation qui demandent des options spécifiques (No reboot, silencieux, aucune interaction avec l'utilisateur).
-\\
+\\ \\
 Lors de l'installation des logiciels, il ne faut pas que cela perturbe le travail de l'utilisateur donc il faut AUCUNE interaction donc pas de boîte de dialogue ni d'autorisation utilisateur ni de "Pop-Up" et SURTOUT PAS de redémarrage surtout dans ce contexte.
 \newpage
-On va prendre l'exemple de Mozilla Firefox avec le code disponible :
+\textbf{On va prendre l'exemple de Mozilla Firefox avec le code disponible : (Définitions en Annexes)}
 \\
-\textbf{Voir en annexes les différentes commandes}
-  
 
 \begin{lstlisting}[language=C]
 @echo off
-1	runas /profile /user:Administrateur install.bat < pass.txt
+1	runas /noprofile /user:Administrateur install.bat < pass.txt
 	
 3	sc config UI0Detect start= disabled
 4	sc stop UI0Detect
@@ -232,14 +230,15 @@ goto end
 :end	
 \end{lstlisting}
 \begin{itemize}
-	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
-	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Références) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Références). 
+	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur sans charger le profil utilisateur, juste à avoir le privilège lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
+	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Références). 
 	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de Mozilla Firefox et de Mozilla Maintenance Service.
 	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de Mozilla Firefox en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tout les messages qui peuvent apparaitre et ne pas redémarrer
 	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script maison en PowerShell.
 	\item Ligne 21 - 22 : Faire de Mozilla Firefox le navigateur par défaut avec le paramètre
 \end{itemize}
 \newpage
+
 \subsection{Déploiement}
 \subsubsection{Création}
 Après que le script soit fait, il reste à créer l'archive en ".zip" avec le fichier ".txt" qui contient le mot de passe et le script Batch. En général, l'archive fait moins de 5 Kilo-Octet. Quand l'archive à bien été faite, il y a plu qu'a créer la fiche du déploiement en se connectant sur l'interface Web d'OCS et aller dans "Deployment" puis "Build"
@@ -304,7 +303,7 @@ Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affic
 \newpage
 
 \section{Résultat Final}
-Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à "Windows Installer" qui n'a pas les droits requis pouu l'installation alors qu'on démarre le script en utilisateur "Administrateur"
+Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à "Windows Installer" qui n'a pas les droits requis pour l'installation alors qu'on démarre le script en utilisateur "Administrateur". En moyenne avec les paquets crées, le déploiement dure 10  minutes maximum. 
 \subsection{Problèmes rencontrés}
 Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les Postes ou sinon c'était un service WINDOWS qui posait problème.
 \\
