@@ -115,7 +115,7 @@ Depuis SSH, il fallait installer un serveur Web, un serveur BDD, PHP, Perl et le
 Pour les modules Perl en cas de problèmes de paquets, il faut les télécharger et les installer à la main depuis ce site \url{http://search.cpan.org/} 
 S'il manque des paquets, le script d'installation d'OCS Inventory les installera mais dans notre cas, on est derrière un proxy donc vaut mieux tout installer avant. \\
 
-Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site via  et la documentation non à jour (cf.Références).
+Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site et la documentation non à jour (cf.Références).
 \newpage
 \section{Déploiement}
 \subsection{Principe de fonctionnement}
@@ -202,7 +202,7 @@ En détails :
 \item Ligne 11 - Ligne 14 : L'adresse IP et le Port d'écoute du Serveur OCSInventory
 \item Ligne 19 : Le répertoire où se situe le programme d'installation de l'agent qui sera déployé et qu'on inclut dans la variable "INSTALLSERVER"
 \item Ligne 21 - Ligne 22 : Le répertoire d'installation sur les Postes Distants inclut dans la variable "INSTALLDIR"
-\item Ligne 25 : On éxécute le programme d'installation en utilisant les variables et en rajoutant les options d'installation en spécifiant le serveur OCS par la variable, en installation silencieuse et en forçant l'inventaire après l'installation.
+\item Ligne 25 : On exécute le programme d'installation en utilisant les variables et en rajoutant les options d'installation en spécifiant le serveur OCS par la variable, en installation silencieuse et en forçant l'inventaire après l'installation.
 Ligne 27 - Ligne 30 : On "tue" le processus "OCSService" pour copier le fichier de configuration "ocsinventory.ini" dans le dossier de l'agent situé dans "\%PROGRAMDATA\%"
 \item Ligne 31 - Ligne 33 : On exécute "OcsService.exe", "OcsSystray.exe" pour qu'il soit vu dans la barre de notification et on relance de "force" un inventaire avec "OcsInventory.exe" \\
 \end{itemize}
