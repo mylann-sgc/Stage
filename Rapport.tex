@@ -19,6 +19,7 @@
 \newpage
 \tableofcontents
 \newpage
+\setcounter{page}{1}
 \section{Introduction}
 \section{Contexte}
 Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour installer et/ou mettre à jour les logiciels existants.
@@ -409,7 +410,7 @@ Stop-Process -Name powershell
 \textbf{Commentaires :}\\
 \begin{itemize}
 \item \textbf{Variable \$ProfileDirectory :} Récupère à partir du registre, les répertoires Utilisateurs existants dans le Disque Local C: 
-\item \textbf{Variable Get-ChildItem :} Depuis la variable \$ProfilesDirectory, le script va filtré dans tout les dossiers utilisateur l'icône "DMC.lnk" en la supprimant (si trouvé) et en copiant depuis le serveur la nouvelle icône fonctionnelle 
+\item \textbf{Commande Get-ChildItem :} Depuis la variable \$ProfilesDirectory, le script va filtré dans tout les dossiers utilisateur l'icône "DMC.lnk" en la supprimant (si trouvé) et en copiant depuis le serveur la nouvelle icône fonctionnelle 
 \end{itemize}
 
 \subsection{Définitions}
