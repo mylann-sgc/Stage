@@ -8,10 +8,10 @@
 
 :: Désinstallation de TightVNC 
 	taskkill /im tvnserver.exe /f
-	msiexec /x "\\ficserv\allusers\Logiciels\TightVNC\tightvnc-2.8.5-gpl-setup-64bit.msi" /quiet /norestart
+	msiexec /x "\\192.168.10.28\allusers\Logiciels\TightVNC\tightvnc-2.8.5-gpl-setup-64bit.msi" /quiet /norestart
 		
 :: Installation de TightVNC
-	msiexec /i "\\ficserv\allusers\Logiciels\TightVNC\tightvnc-2.8.5-gpl-setup-64bit.msi" /quiet /norestart ADDLOCAL=Server	SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=master
+	msiexec /i "\\192.168.10.28\allusers\Logiciels\TightVNC\tightvnc-2.8.5-gpl-setup-64bit.msi" /quiet /norestart ADDLOCAL=Server	SET_USEVNCAUTHENTICATION=1 VALUE_OF_USEVNCAUTHENTICATION=1 SET_PASSWORD=1 VALUE_OF_PASSWORD=master
 
 :: Réactivation du Service de Détection de services interactifs
 	sc config UI0Detect start= demand

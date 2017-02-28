@@ -11,7 +11,7 @@
 	"C:\Program Files (x86)\Mozilla Maintenance Service\Uninstall.exe" /verysilent /SUPPRESSMSGBOXES /NORESTART
 	
 :: Installation de Thunderbird	
-	"\\ficserv\allusers\Logiciels\Thunderbird\Thunderbird_Setup_45.6.0.exe" /INI=\\ficserv\allusers\Logiciels\Thunderbird\config.ini /verysilent /SUPPRESSMSGBOXES /NORESTART
+	"\\192.168.10.28\allusers\Logiciels\Thunderbird\Thunderbird_Setup_45.6.0.exe" /INI=\\192.168.10.28\allusers\Logiciels\Thunderbird\config.ini /verysilent /SUPPRESSMSGBOXES /NORESTART
 	
 :: Réactivation du Service de Détection de services interactifs
 	sc config UI0Detect start= demand

@@ -12,11 +12,16 @@
 	"C:\Program Files\Mozilla Firefox\uninstall\helper.exe" /verysilent /SUPPRESSMSGBOXES /NORESTART	
 
 :: Installation de Mozilla Firefox
-	"\\ficserv\allusers\Logiciels\firefox\Firefox Setup 51.0.1.exe" /INI=\\ficserv\allusers\Logiciels\firefox\config.ini /verysilent /SUPPRESSMSGBOXES /NORESTART
+	"\\192.168.10.28\allusers\Logiciels\firefox\Firefox Setup 51.0.1_x64.exe" /INI=\\192.168.10.28\allusers\Logiciels\firefox\config.ini /verysilent /SUPPRESSMSGBOXES /NORESTART
 	timeout 10
 	
 :: Remplacement de l'icone DMC
-	powershell -executionpolicy Bypass -file "\\192.168.10.28\allusers\Logiciels\01 - Install Mat\Script\Firefox\Firefox.ps1"	
+	powershell -executionpolicy Bypass -file "\\192.168.10.28\allusers\Logiciels\01 - Install Mat\Script\Firefox\Firefox64.ps1"
+	timeout 5
+	
+:: Blocage des MAJ
+	xcopy "\\192.168.10.28\allusers\Logiciels\firefox\channel-prefs.js" /Y "C:\Program Files\Mozilla Firefox\defaults\pref\"
+	timeout 5	
 
 :: Mozilla par défaut	
 	"%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" /SetAsDefaultAppUser
@@ -25,4 +30,4 @@
 	sc config UI0Detect start= demand
 	sc stop UI0Detect
 goto end
-:end
+:end	
