@@ -8,7 +8,7 @@
 \usepackage{listings}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \author{Mylann Dupuy}
-\title{Dossier de stage --  \\ Powered by \LaTeX}
+\title{Dossier Technique --  \\ Powered by \LaTeX}
 \date{10 Fevrier 2017}
 \begin{document}
 \maketitle
@@ -20,7 +20,6 @@
 \tableofcontents
 \newpage
 \setcounter{page}{1}
-\section{Introduction}
 \section{Contexte}
 Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour installer et/ou mettre à jour les logiciels existants.
 
@@ -51,7 +50,7 @@ Tout les Postes n'ont pas la même fonction donc il faut mettre à jour les logi
 
 \subsection{Matériels disponible}
 \begin{itemize}
-	\item \textbf{1 Ordinateur} pour administrer et surveiller OCS.
+	\item \textbf{1 Ordinateur} pour administrer l'un des serveurs qui sera utilisé.
 	\item \textbf{1 Serveur virtuel} sous \textbf{Debian 8.7} ou \textbf{Windows Server 201x}.
 	\item \textbf{1 Serveur de stockage} pour l'accès aux exécutables prévus pour les scripts. 
 \end{itemize}
@@ -102,7 +101,7 @@ Nous avons décidés de mettre en place \textbf{OCS Inventory NG 2.3} (cf.Réfé
 Nous avons créer une machine virtuelle sous Hyper-V (cf.Références) en lui mettant comme ressources :\\ \begin{itemize}
 				\item 1 image ISO de Debian 8.7
 				\item 4 Go de mémoire vive
-				\item 1 C{\oe}ur du processeur hôte
+				\item 1 C{\oe}ur dédié
 				\item 50 Go d'espace disque
 				\item 1 connexion au réseau CJB	
 \end{itemize} 
@@ -189,7 +188,7 @@ Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il inst
 \textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU du poste Administrateur.}
 \newpage
 \subsubsection{Via GPO}
-Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les postes clients dès que l'utilisateur va se connecter avec son "login//Password" de l'AD. Suite à ça, l'agent va se déployer via un script mis au coeur de la GPO du Windows Server 2012.
+Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les postes clients dès que l'utilisateur va se connecter avec son "login//P@ssword" de l'AD. Suite à ça, l'agent va se déployer via un script mis au coeur de la GPO du Windows Server 2012.
 \\
 \begin{figure}[hbtp]
 \centering
@@ -213,7 +212,7 @@ Après que le script soit crée et mis sur le serveur, il reste à paramétrer l
 \subsection{Interface Web OCS Inventory}
 Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet du poste et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
 
-En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Le nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
+En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
 \subsection{Scripts}
 
 OCS Inventory peut déployer des paquets SEULEMENT s'ils sont en ".zip" ou ".tar.gz" donc avant de déployer un paquets, on va créer un script qui va lancer les installations des logiciels de manière silencieuse et avec des paramètres spécifiques.
