@@ -14,7 +14,7 @@
 \maketitle
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=1]{../../../Pictures/Script/cjb.jpg}
+\includegraphics[scale=1]{Script/cjb.jpg}
 \end{figure}
 \newpage
 \tableofcontents
@@ -121,7 +121,7 @@ Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site 
 \section{Déploiement}
 \subsection{Principe de fonctionnement}
 \begin{figure}[hbtp]
-\includegraphics[scale=0.8]{../../../Downloads/deploy.jpg}
+\includegraphics[scale=0.8]{Script/deploy.jpg}
 \caption{Schéma de déploiement (Source : Wiki OCS)}
 \end{figure}
 L'architecture reste simple à mettre en place, dans l'environnement actuel nous avons tout mis sur le même serveur.
@@ -129,7 +129,7 @@ L'architecture reste simple à mettre en place, dans l'environnement actuel nous
 \subsubsection{OCS Inventory NG Agent Deployment Tool}
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{../../../Pictures/Script/1.jpg}
+\includegraphics[scale=0.5]{Script/1.jpg}
 \caption{Etape 1 - Écran de démarrage}
 \end{figure}
 Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'agent OCS sur les Postes Clients avec \textbf{OCS Inventory NG Agent Deployment Tool} puis aussi vérifier si les partages administratifs (C\$) sont bien activés. Pour ce faire, il faut faire \textbackslash\textbackslash 192.168.x.x\textbackslash C\$
@@ -138,14 +138,14 @@ Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'
 
 \begin{figure}[hbtp]
   \centering
-  \includegraphics[scale=0.5]{../../../Pictures/Script/2.jpg}
+  \includegraphics[scale=0.5]{Script/2.jpg}
   \caption{Etape 2 - La configuration de l'outil de déploiement}
 \end{figure} 
 Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce faire, il faut utilisé le module PSEXEC (cf.Annexes) depuis le poste qui va déployer l'agent OCS. Il suffit de mettre le répertoire exacte du module précédemment télécharger depuis le site dans les options d'OCS Inventory NG Agent Deployment Tool. Quand c'est fait, il faut passer à \textbf{l'étape 3}. \\
 
 \begin{figure}[hbtp]
  \centering
- \includegraphics[scale=0.7]{../../../Pictures/Script/3.png}
+ \includegraphics[scale=0.7]{Script/3.png}
  \caption{Etape 3 - La sélection des Postes}
  \end{figure}
   
@@ -154,7 +154,7 @@ Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce fa
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.7]{../../../Pictures/Script/4.png}
+\includegraphics[scale=0.7]{Script/4.png}
 \caption{Etape 4 - Les paramètres de l'agent OCS}
 \end{figure}
 
@@ -172,7 +172,7 @@ Quand cette étape est faite en ayant bien vérifier avant, on passe à \textbf{
 \newpage
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.9]{../../../Pictures/Script/5.png}
+\includegraphics[scale=0.9]{Script/5.png}
 \caption{Etape 5 - L'authentification}
 \end{figure}
 
@@ -180,7 +180,7 @@ Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.6]{../../../Pictures/Script/6.png}
+\includegraphics[scale=0.6]{Script/6.png}
 \caption{Etape 6 - Log de déploiement}
 \end{figure}
 
@@ -269,7 +269,7 @@ Après que le script soit fait, il reste à créer l'archive en ".zip" avec le f
 \\
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.7]{../../../Pictures/Script/Deploiement1.PNG}
+\includegraphics[scale=0.7]{Script/Deploiement1.PNG}
 \caption{Accès Creation Déploiement}
 \end{figure}
 
@@ -278,7 +278,7 @@ Après avoir cliqué dessus, la page "Package Builder" s'ouvre en y montrant un 
 Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), exécuter ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.4]{../../../Pictures/Script/Deploiement2.PNG}
+\includegraphics[scale=0.4]{Script/Deploiement2.PNG}
 \caption{Information Déploiement}
 \end{figure}
 \newpage
@@ -287,7 +287,7 @@ La page finale de création du paquet montre le poids du paquet, le nombre de fr
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.6]{../../../Pictures/Script/Deploiement3.PNG}
+\includegraphics[scale=0.6]{Script/Deploiement3.PNG}
 \caption{Résumé de création}
 \end{figure}
 
@@ -295,13 +295,13 @@ Dès que la confirmation apparait, cela veut dire que le paquets est bien créer
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.6]{../../../Pictures/Script/Deploiement4.PNG}
+\includegraphics[scale=0.6]{Script/Deploiement4.PNG}
 \caption{Confirmation de Création du paquets}
 \end{figure}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.7]{../../../Pictures/Script/Deploiement5.PNG}
+\includegraphics[scale=0.7]{Script/Deploiement5.PNG}
 \caption{Résultat coté serveur}
 \end{figure}
 \newpage
@@ -311,7 +311,7 @@ Après avoir eu la confirmation de la création du paquet, il reste à l'activer
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.7]{../../../Pictures/Script/Deploiement1.PNG}
+\includegraphics[scale=0.7]{Script/Deploiement1.PNG}
 \caption{Accès Activation Paquet}
 \end{figure}
 
@@ -319,7 +319,7 @@ Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant 
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.4]{../../../Pictures/Script/Activation2.PNG}
+\includegraphics[scale=0.4]{Script/Activation2.PNG}
 \caption{Accès Activation Paquet}
 \end{figure}
  
