@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.1)  1 MAR 2017 10:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.1)  3 MAR 2017 09:00
 entering extended mode
 **./Rapport.tex
 (Rapport.tex
@@ -692,7 +692,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 15.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 15.
-<Script/cjb.jpg, id=115, 301.125pt x 301.125pt>
+<Script/cjb.jpg, id=103, 301.125pt x 301.125pt>
 File: Script/cjb.jpg Graphic file (type jpg)
  <use Script/cjb.jpg>
 Package pdftex.def Info: Script/cjb.jpg used on input line 17.
@@ -718,172 +718,156 @@ Underfull \hbox (badness 10000) in paragraph at lines 30--32
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 47--48
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.57 \newpage
-              [1]
-Underfull \hbox (badness 1939) in paragraph at lines 71--72
+[3]
+Underfull \hbox (badness 1939) in paragraph at lines 72--73
 []\T1/bch/m/n/10.95 Supervision des lo-gi-ciels ins-
  []
 
 
-Underfull \hbox (badness 1609) in paragraph at lines 72--73
+Underfull \hbox (badness 1609) in paragraph at lines 73--74
 []\T1/bch/m/n/10.95 Logiciel libre dis-po-nible sous
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 81--82
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 []\T1/bch/m/n/10.95 Automatisation d'ins-tal-la-tion,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
+Underfull \hbox (badness 10000) in paragraph at lines 89--90
 []\T1/bch/m/n/10.95 Packages propre à WAPT
  []
 
 
-Underfull \hbox (badness 1400) in paragraph at lines 90--91
+Underfull \hbox (badness 1400) in paragraph at lines 91--92
 []\T1/bch/m/n/10.95 Création de pa-quets + ou -
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--98
+Underfull \hbox (badness 10000) in paragraph at lines 62--99
 
  []
 
 
-Overfull \hbox (10.39264pt too wide) in paragraph at lines 61--98
+Overfull \hbox (10.39264pt too wide) in paragraph at lines 62--99
 [] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--98
+Underfull \hbox (badness 10000) in paragraph at lines 62--99
 
  []
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.98 \newpage
-              [2]
-Underfull \hbox (badness 10000) in paragraph at lines 101--101
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 102--102
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 113--114
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 116.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 117.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-Overfull \hbox (5.10481pt too wide) in paragraph at lines 115--118
-[]\T1/bch/m/n/10.95 Depuis SSH, il fal-lait ins-tal-ler un ser-veur Web, un ser
--veur BDD, PHP, Perl et leurs mo-dules (\T1/bch/b/n/10.95 apache2,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--118
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--118
+Underfull \hbox (badness 10000) in paragraph at lines 116--119
 
  []
 
-[3] <Script/deploy.jpg, id=168, 454.69875pt x 277.035pt>
+[5] <Script/deploy.jpg, id=155, 454.69875pt x 277.035pt>
 File: Script/deploy.jpg Graphic file (type jpg)
 
 <use Script/deploy.jpg>
-Package pdftex.def Info: Script/deploy.jpg used on input line 124.
+Package pdftex.def Info: Script/deploy.jpg used on input line 125.
 (pdftex.def)             Requested size: 363.75949pt x 221.6283pt.
- <Script/1.jpg, id=169, 490.83376pt x 409.53pt>
+ <Script/1.jpg, id=156, 490.83376pt x 409.53pt>
 File: Script/1.jpg Graphic file (type jpg)
 
 <use Script/1.jpg>
-Package pdftex.def Info: Script/1.jpg used on input line 132.
+Package pdftex.def Info: Script/1.jpg used on input line 133.
 (pdftex.def)             Requested size: 245.41628pt x 204.7645pt.
- [4 <./Script/deploy.jpg> <./Script/1.jpg>]
-<Script/2.jpg, id=176, 482.80376pt x 359.3425pt>
+ [6 <./Script/deploy.jpg> <./Script/1.jpg>]
+<Script/2.jpg, id=163, 482.80376pt x 359.3425pt>
 File: Script/2.jpg Graphic file (type jpg)
  <use Script/2.jpg>
-Package pdftex.def Info: Script/2.jpg used on input line 141.
+Package pdftex.def Info: Script/2.jpg used on input line 142.
 (pdftex.def)             Requested size: 241.40129pt x 179.6708pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--145
+Underfull \hbox (badness 10000) in paragraph at lines 145--146
 
  []
 
-<Script/3.png, id=177, 356.0803pt x 302.63063pt>
+<Script/3.png, id=164, 356.0803pt x 302.63063pt>
 File: Script/3.png Graphic file (type png)
  <use Script/3.png>
-Package pdftex.def Info: Script/3.png used on input line 148.
+Package pdftex.def Info: Script/3.png used on input line 149.
 (pdftex.def)             Requested size: 249.25452pt x 211.83998pt.
- [5 <./Script/2.jpg> <./Script/3.png>] <Script/4.png, id=187, 482.55281pt x 404
+ [7 <./Script/2.jpg> <./Script/3.png>] <Script/4.png, id=174, 482.55281pt x 404
 .26031pt>
 File: Script/4.png Graphic file (type png)
 
 <use Script/4.png>
-Package pdftex.def Info: Script/4.png used on input line 157.
+Package pdftex.def Info: Script/4.png used on input line 158.
 (pdftex.def)             Requested size: 337.78465pt x 282.98029pt.
- [6 <./Script/4.png>]
-<Script/5.png, id=201, 334.24875pt x 280.79906pt>
+ [8 <./Script/4.png>]
+<Script/5.png, id=188, 334.24875pt x 280.79906pt>
 File: Script/5.png Graphic file (type png)
  <use Script/5.png>
-Package pdftex.def Info: Script/5.png used on input line 175.
+Package pdftex.def Info: Script/5.png used on input line 176.
 (pdftex.def)             Requested size: 300.82109pt x 252.71681pt.
 
-<Script/6.png, id=202, 508.14844pt x 398.99063pt>
+<Script/6.png, id=189, 508.14844pt x 398.99063pt>
 File: Script/6.png Graphic file (type png)
  <use Script/6.png>
-Package pdftex.def Info: Script/6.png used on input line 183.
+Package pdftex.def Info: Script/6.png used on input line 184.
 (pdftex.def)             Requested size: 304.8914pt x 239.39622pt.
- [7 <./Script/5.png> <./Script/6.png>]
-<Script/DeploiementGPO1.PNG, id=211, 673.01437pt x 424.58624pt>
+ [9 <./Script/5.png> <./Script/6.png>]
+<Script/DeploiementGPO1.PNG, id=198, 673.01437pt x 424.58624pt>
 File: Script/DeploiementGPO1.PNG Graphic file (type png)
 
 <use Script/DeploiementGPO1.PNG>
-Package pdftex.def Info: Script/DeploiementGPO1.PNG used on input line 195.
+Package pdftex.def Info: Script/DeploiementGPO1.PNG used on input line 196.
 (pdftex.def)             Requested size: 471.10684pt x 297.20834pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 208--209
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
 
-Overfull \hbox (16.24641pt too wide) in paragraph at lines 210--211
+Overfull \hbox (16.24641pt too wide) in paragraph at lines 211--212
 \T1/bch/b/n/10.95 "Confi-gu-ra-tion or-di-na-teur\Stratégies\Paramètres Win-dow
 s\Scripts (dé-mar-ra-ge/ar-rêt)\Démarrage" 
  []
 
-[8 <./Script/DeploiementGPO1.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
+[10 <./Script/DeploiementGPO1.PNG>]
+Underfull \hbox (badness 10000) in paragraph at lines 214--215
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--223
+Underfull \hbox (badness 10000) in paragraph at lines 219--224
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 218--223
+Underfull \hbox (badness 10000) in paragraph at lines 219--224
 
  []
 
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 224--226
+[11]
+Underfull \hbox (badness 10000) in paragraph at lines 225--227
 
  []
 
@@ -893,162 +877,188 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 (C:\Users\mdupuy\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 )
-Overfull \hbox (2.48706pt too wide) in paragraph at lines 234--235
+Overfull \hbox (2.48706pt too wide) in paragraph at lines 235--236
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.48705pt too wide) in paragraph at lines 247--248
+Overfull \hbox (2.48705pt too wide) in paragraph at lines 248--249
 [][][][][][][][][][][][][][][][][][] 
  []
 
-[10] <Script/Deploiement1.PNG, id=255, 725.71124pt x 201.75375pt>
+[12] <Script/Deploiement1.PNG, id=242, 725.71124pt x 201.75375pt>
 File: Script/Deploiement1.PNG Graphic file (type png)
 
 <use Script/Deploiement1.PNG>
-Package pdftex.def Info: Script/Deploiement1.PNG used on input line 272.
+Package pdftex.def Info: Script/Deploiement1.PNG used on input line 273.
 (pdftex.def)             Requested size: 507.99442pt x 141.22665pt.
 
-Overfull \hbox (24.29755pt too wide) in paragraph at lines 272--273
+Overfull \hbox (24.29755pt too wide) in paragraph at lines 273--274
  [][] 
  []
 
-<Script/Deploiement2.PNG, id=256, 590.95781pt x 652.68843pt>
+<Script/Deploiement2.PNG, id=243, 590.95781pt x 652.68843pt>
 File: Script/Deploiement2.PNG Graphic file (type png)
 
 <use Script/Deploiement2.PNG>
-Package pdftex.def Info: Script/Deploiement2.PNG used on input line 281.
+Package pdftex.def Info: Script/Deploiement2.PNG used on input line 282.
 (pdftex.def)             Requested size: 236.37894pt x 261.07074pt.
- [11 <./Script/Deploiement1.PNG> <./Script/Deploiement2.PNG>] <Script/Deploieme
-nt3.PNG, id=266, 571.38469pt x 283.81032pt>
+ [13 <./Script/Deploiement1.PNG> <./Script/Deploiement2.PNG>] <Script/Deploieme
+nt3.PNG, id=253, 571.38469pt x 283.81032pt>
 File: Script/Deploiement3.PNG Graphic file (type png)
 
 <use Script/Deploiement3.PNG>
-Package pdftex.def Info: Script/Deploiement3.PNG used on input line 290.
+Package pdftex.def Info: Script/Deploiement3.PNG used on input line 291.
 (pdftex.def)             Requested size: 342.83345pt x 170.28749pt.
 
-<Script/Deploiement4.PNG, id=267, 441.90094pt x 60.97781pt>
+<Script/Deploiement4.PNG, id=254, 441.90094pt x 60.97781pt>
 File: Script/Deploiement4.PNG Graphic file (type png)
 
 <use Script/Deploiement4.PNG>
-Package pdftex.def Info: Script/Deploiement4.PNG used on input line 298.
+Package pdftex.def Info: Script/Deploiement4.PNG used on input line 299.
 (pdftex.def)             Requested size: 265.14261pt x 36.58694pt.
 
-<Script/Deploiement5.PNG, id=268, 431.36156pt x 271.76532pt>
+<Script/Deploiement5.PNG, id=255, 431.36156pt x 271.76532pt>
 File: Script/Deploiement5.PNG Graphic file (type png)
 
 <use Script/Deploiement5.PNG>
-Package pdftex.def Info: Script/Deploiement5.PNG used on input line 304.
+Package pdftex.def Info: Script/Deploiement5.PNG used on input line 305.
 (pdftex.def)             Requested size: 301.95103pt x 190.23442pt.
- [12 <./Script/Deploiement3.PNG> <./Script/Deploiement4.PNG> <./Script/Deploiem
+ [14 <./Script/Deploiement3.PNG> <./Script/Deploiement4.PNG> <./Script/Deploiem
 ent5.PNG>]
 File: Script/Deploiement1.PNG Graphic file (type png)
  <use Script/Deploiement1.PNG>
-Package pdftex.def Info: Script/Deploiement1.PNG used on input line 314.
+Package pdftex.def Info: Script/Deploiement1.PNG used on input line 315.
 (pdftex.def)             Requested size: 507.99442pt x 141.22665pt.
 
-Overfull \hbox (24.29755pt too wide) in paragraph at lines 314--315
+Overfull \hbox (24.29755pt too wide) in paragraph at lines 315--316
  [][] 
  []
 
-<Script/Activation2.PNG, id=279, 1167.61218pt x 575.90157pt>
+<Script/Activation2.PNG, id=266, 1167.61218pt x 575.90157pt>
 File: Script/Activation2.PNG Graphic file (type png)
 
 <use Script/Activation2.PNG>
-Package pdftex.def Info: Script/Activation2.PNG used on input line 322.
+Package pdftex.def Info: Script/Activation2.PNG used on input line 323.
 (pdftex.def)             Requested size: 467.0366pt x 230.35654pt.
- [13 <./Script/Activation2.PNG>]
-Underfull \hbox (badness 10000) in paragraph at lines 332--334
+ [15 <./Script/Activation2.PNG>]
+<Script/Act_Deploy1.PNG, id=274, 943.27406pt x 150.5625pt>
+File: Script/Act_Deploy1.PNG Graphic file (type png)
 
+<use Script/Act_Deploy1.PNG>
+Package pdftex.def Info: Script/Act_Deploy1.PNG used on input line 333.
+(pdftex.def)             Requested size: 471.63588pt x 75.28105pt.
+
+<Script/Act_Deploy2.PNG, id=275, 1181.16281pt x 446.41782pt>
+File: Script/Act_Deploy2.PNG Graphic file (type png)
+
+<use Script/Act_Deploy2.PNG>
+Package pdftex.def Info: Script/Act_Deploy2.PNG used on input line 340.
+(pdftex.def)             Requested size: 484.27989pt x 183.03249pt.
+
+Overfull \hbox (0.58302pt too wide) in paragraph at lines 340--341
+ [][] 
  []
 
-[14] [15]
-Overfull \hbox (15.62717pt too wide) in paragraph at lines 370--372
+<Script/Act_Deploy4.PNG, id=276, 1288.0622pt x 240.14719pt>
+File: Script/Act_Deploy4.PNG Graphic file (type png)
+
+<use Script/Act_Deploy4.PNG>
+Package pdftex.def Info: Script/Act_Deploy4.PNG used on input line 345.
+(pdftex.def)             Requested size: 515.21574pt x 96.05716pt.
+
+Overfull \hbox (31.51888pt too wide) in paragraph at lines 345--346
+ [][] 
+ []
+
+[16 <./Script/Act_Deploy1.PNG> <./Script/Act_Deploy2.PNG> <./Script/Act_Deploy4
+.PNG>]
+Overfull \hbox (15.62717pt too wide) in paragraph at lines 369--371
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.48706pt too wide) in paragraph at lines 373--375
+Overfull \hbox (2.48706pt too wide) in paragraph at lines 372--374
 [][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 387--389
+Underfull \hbox (badness 10000) in paragraph at lines 386--388
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--391
-
- []
-
-[16]
-Overfull \hbox (55.04749pt too wide) in paragraph at lines 399--400
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--427
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--427
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--427
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--427
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--427
+Underfull \hbox (badness 10000) in paragraph at lines 389--390
 
  []
 
 [17]
-Overfull \hbox (16.96289pt too wide) in paragraph at lines 441--442
+Overfull \hbox (55.04749pt too wide) in paragraph at lines 398--399
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 408--409
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--426
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--426
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--426
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--426
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--426
+
+ []
+
+[18]
+Overfull \hbox (16.96289pt too wide) in paragraph at lines 440--441
 []\T1/bch/b/n/10.95 Wiki d'OCS In-ven-tory : []$\T1/cmtt/m/n/10.95 http : / / w
 iki . OCSinventory-[]ng . org / index . php ? title = Documentation :
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 444.
-[18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 444.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 443.
+[19]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 443.
  (Rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 444.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 444.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 443.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 443.
 Package rerunfilecheck Info: File `Rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 7572AAD92B2E43C32E499507AD840BC4;1789.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 444.
+(rerunfilecheck)             Checksum: 40E5B342AF56EF396CA59904144A3AE5;1631.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 443.
  ) 
 Here is how much of TeX's memory you used:
- 9259 strings out of 493333
- 130600 string characters out of 3139192
- 252916 words of memory out of 3000000
- 12532 multiletter control sequences out of 15000+200000
+ 9271 strings out of 493333
+ 130931 string characters out of 3139192
+ 252903 words of memory out of 3000000
+ 12541 multiletter control sequences out of 15000+200000
  33584 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,9n,51p,559b,1170s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 28i,9n,51p,528b,1170s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\mdupuy\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
 \ectt1095.pk>{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Progr
 am Files/MiKTeX 2.9/fonts/type1/bitstrea/charter/bchb8a.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/bitstrea/charter/bchr8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Rapport.pdf (20 pages, 646622 bytes).
+Output written on Rapport.pdf (19 pages, 692990 bytes).
 PDF statistics:
- 448 PDF objects out of 1000 (max. 8388607)
+ 439 PDF objects out of 1000 (max. 8388607)
  138 named destinations out of 1000 (max. 500000)
- 300 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 291 words of extra memory for PDF output out of 10000 (max. 10000000)
 

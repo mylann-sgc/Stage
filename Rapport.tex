@@ -19,12 +19,12 @@
 \newpage
 \tableofcontents
 \newpage
-\setcounter{page}{1}
+\setcounter{page}{3}
 \section{Contexte}
 Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour installer et/ou mettre à jour les logiciels existants.
 
 \section{Objectif(s)}
-L'objectif est de déployer les logiciels utilisés couramment et de les mettre à jour sous Windows Server ou sous Linux Server. Le système doit fonctionner avant la fin du stage. 
+L'objectif est de déployer les logiciels utilisés couramment et de les mettre à jour sous Windows Server ou sous Linux Server. Le système doit fonctionner en faisant l'inventaire sur les 3 Sites (Le Mans - Chartres - Caen). 
 
 \subsection{Cahier des charges}
 Il fallait déployé l'ensemble des Postes sur les réseaux du Centre Jean Bernard - Clinique Victor Hugo sans que cela dérange les utilisateurs, il faut donc mettre en place un système de déploiement pour mettre à jour ou installer des logiciels manquants sur les Postes.\\ \\
@@ -37,6 +37,7 @@ Il fallait déployé l'ensemble des Postes sur les réseaux du Centre Jean Berna
 	\item Mozilla Firefox
 	\item Mozilla Thunderbird
 	\item PDFCreator
+	\item TightVNC
 	\item 7-Zip
 \end{itemize}
 
@@ -107,16 +108,16 @@ Nous avons créer une machine virtuelle sous Hyper-V (cf.Références) en lui me
 \end{itemize} 
 
 \begin{center}
-\textbf{Cette configuration est hébergée sur le Poste de M.Deshayes}
+\textbf{Cette configuration est hébergée virtuellement}
 \end{center}
 \subsubsection{Installation}
-Lors de l'installation, j'ai tout laissé par défaut sauf le proxy qui à été renseigné. Suite à l'installation, j'ai eu à installer \textbf{openssh-server} pour tout faire via \textbf{PuTTY}.\\
+Lors de l'installation, il faut tout laissé par défaut sauf le proxy qui doit être renseigné. Suite à l'installation, il reste à installer \textbf{openssh-server} pour tout faire via \textbf{PuTTY} ou \textbf{SSH} .\\
 
-Depuis SSH, il fallait installer un serveur Web, un serveur BDD, PHP, Perl et leurs modules (\textbf{apache2, mylsql-server, php5, perl, libxml-simple-perl, libcompress-zlib-perl, libdbi-perl libdbd-mysql-perl,libapache-dbi-perl, libnet-ip-perl, libsoap-lite-perl}).\\ \\
+Depuis PuTTY ou SSH, il faut installer le serveur Web, le serveur BDD, PHP, Perl et leurs modules (\textbf{apache2, mylsql-server, php5, perl, libxml-simple-perl, libcompress-zlib-perl, libdbi-perl libdbd-mysql-perl,libapache-dbi-perl, libnet-ip-perl, libsoap-lite-perl}).\\ \\
 Pour les modules Perl en cas de problèmes de paquets, il faut les télécharger et les installer à la main depuis ce site \url{http://search.cpan.org/} 
 S'il manque des paquets, le script d'installation d'OCS Inventory les installera mais dans notre cas, on est derrière un proxy donc vaut mieux tout installer avant. \\
 
-Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site et la documentation non à jour (cf.Références).
+Pour installer OCS Inventory NG, il faut utilisé l'archive qui était sur le site et la documentation qui n'est pas à jour (cf.Références).
 \newpage
 \section{Déploiement}
 \subsection{Principe de fonctionnement}
@@ -184,7 +185,7 @@ Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni
 \caption{Etape 6 - Log de déploiement}
 \end{figure}
 
-Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il installe l'agent OCS sur les Postes Clients. L'outil de déploiement peut déployer les Postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'opération sur 10 Postes maximum. \\ 
+Après avoir tout bien fait, il suffit de lancer le déploiement pour installer et executer l'agent OCS sur les Postes Clients. L'outil de déploiement peut déployer les Postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'opération sur 10 Postes maximum. \\ 
 \textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU du poste Administrateur.}
 \newpage
 \subsubsection{Via GPO}
@@ -193,7 +194,7 @@ Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les p
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.7]{Script/DeploiementGPO1.PNG}
-\caption{Script de déploiment}
+\caption{Script de déploiement}
 \end{figure}
 
 Pour commencer, il faut faire le script qu'il faudra mettre sur l'Active Directory (\textbf{script inspiré de Philippe BEAUMONT}.\\
@@ -210,7 +211,7 @@ Ligne 27 - Ligne 30 : On "tue" le processus "OCSService" pour copier le fichier 
 Après que le script soit crée et mis sur le serveur, il reste à paramétrer la GPO en mettant le script dans \textbf{"Configuration ordinateur\textbackslash Stratégies\textbackslash  Paramètres Windows\textbackslash  Scripts (démarrage/arrêt)\textbackslash Démarrage"}
 \newpage
 \subsection{Interface Web OCS Inventory}
-Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet du poste et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
+Lors que l'agent est bien installé sur les Postes Clients, l'agent va faire l'inventaire complet du poste et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
 
 En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
 \subsection{Scripts}
@@ -325,29 +326,27 @@ Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant 
  
 Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affiché différemment, il apparait en "Noir" alors que les autres apparaissent en "Gris" car ils ont été activés et pas le nôtre. Pour ce faire, il faut sur la "Flèche en double sens" à droite de l'écran. Suite à ça, il demande confirmation pour l'activation et ensuite notre paquet devient "Grisé" comme les autres.
 \newpage
+\subsection{Déploiement sur les postes}
+Après que les paquets soit crées et activés, il reste à les déployer sur les postes, pour cela, il suffit de retourner sur la liste d'ordinateur qui se trouve dans "All Computers" et à choisir le poste en cliquant sur le nom du poste...
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{Script/Act_Deploy1.PNG}
+\caption{Choix du poste}
+\end{figure}
 
-\section{Résultat Final}
-Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à "Windows Installer" qui n'a pas les droits requis pour l'installation alors qu'on démarre le script en utilisateur "Administrateur". En moyenne avec les paquets crées, le déploiement dure 10  minutes maximum. 
-\subsection{Problèmes rencontrés}
-Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les Postes ou sinon c'était un service WINDOWS qui posait problème.
-\\
-\begin{itemize}
-\item Windows 7 bloque le déploiement des paquets à cause d'un service de "Détection de services interactifs".
-\item Mozilla Maintenance Service posait problème quand le service de "Détection de Services Interactifs" s'activer, il affichait une boite de dialogue à l'utilisateur.
-\item PDFCreator mettait son imprimante par défaut mais avec un import/export du registre pendant le script, l'imprimante d'origine se remet par défaut (en pratique au bureau informatique).
-\item  Adobe Reader se désinstalle mais ce réinstalle pas car il n'a pas les droits suffisants sur certains Postes (MSIInstaller en cause) !!!
-\item PDFCreator demande à faire redémarrer le PC.
-\item L'utilisation de PSEXEC va créer un dossier utilisateur sur l'ordinateur distant... Résolu avec un script qui force le déploiement de l'inventaire OCS et supprime le dossier utilisateur.
-\item Suite à la mise à jour de Firefox, les PDF s'ouvrent sur une nouvelle page au lieu d'un nouvelle onglet.
-\item A la suite du déploiement, les raccourcis .URL ne pointent plu vers le navigateur. Résolu par un script Powershell (Cf.Annexes)
-\end{itemize}
+... et en vérifiant les logiciels déjà existants pour pas installer un logiciel inutile sur le poste en naviguant sur la fiche du poste puis dans l'onglet "Softwares" ou sinon pour un nouveau poste, il faut aller directement sur "Déployment".
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.41]{Script/Act_Deploy2.PNG}
+\end{figure}
+Suite à ça, dans le menu "Déployment" il faut ajouter le paquet crée précédemment pour le mettre en file d'attente et qui sera déployer lors du prochain inventaire du poste. Il suffit de cliquer sur le bouton "Add Package" puis choisir ou non les options avancées du déploiement.
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{Script/Act_Deploy4.PNG}
+\caption{Options avancées}
+\end{figure}
 
-\section{Conclusion}
-Durant les 8 semaines de stage, j'ai pu apprendre et travailler au sein d'une d'équipe sur un ensemble de Postes en mettant en place un système de déploiement qui servira (ou non) au fil du temps. En cherchant des solutions de déploiement, j'ai pu connaitre autre chose qu'OCS Inventory NG (Cf.Solutions).
-
-J'ai découvert aussi les contraintes qu'il pouvait y avoir en labo informatique et lors d'un déploiement réel sur le réseau du centre en rencontrant des problèmes résolus ou non.
-\newpage
-\section{Compétences Acquises}
+C'est-à-dire que si on choisit "YES" et qu'après on choisit le paquet voulu, il demande la date et l'heure d'installation et en fin de déploiement, si on vent redémarrer ou éteindre le poste mais dans notre cas, il faut SURTOUT PAS le faire. Quand le paquet à été choisi, il y a plu qu'a retourner sur la page de déploiement du poste et voir qu'il y a le paquet qui est en attente. Le paquet sera déployer au prochain inventaire ou on peut le forcer en utilisant PSEXEC (en mode administrateur)
 \newpage
 \section{Annexes}
 \subsection{Scripts}
@@ -415,7 +414,7 @@ Stop-Process -Name powershell
 \subsection{Définitions}
 \textbf{Microsoft Hyper-V :} Virtualisation de machines en ayant le service d'installer sur un Windows 8.x minimum, fonctionne à peu près comme VirtualBox
 \\ \\
-\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le serveur distant.
+\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le postes distant.
 \\ \\
 \textbf{RUNAS :} La commande RUNAS permet à un utilisateur d'exécuter des outils et des programmes spécifiques avec des autorisations différentes de celles attribuées à l'ouverture de session; par exemple, si vous désirez exécuter un programme nécessitant des droits d'Administrateur alors que vous n'êtes pas connecté en tant que tel.
 \\ \\
