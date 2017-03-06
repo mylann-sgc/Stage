@@ -19,7 +19,7 @@
 \newpage
 \tableofcontents
 \newpage
-\setcounter{page}{1}
+\setcounter{page}{3}
 \section{Introduction}
 \section{Contexte}
 Le centre Jean Bernard / Clinique Victor Hugo voudrait mettre un nouveau système de déploiement pour installer et/ou mettre à jour les logiciels existants.
@@ -105,22 +105,22 @@ Nous avons décidés de mettre en place \textbf{OCS Inventory NG 2.3} (cf.Réfé
 Nous avons créer une machine virtuelle sous Hyper-V (cf.Références) en lui mettant comme ressources :\\ \begin{itemize}
 				\item 1 image ISO de Debian 8.7
 				\item 4 Go de mémoire vive
-				\item 1 C{\oe}ur du processeur hôte
+				\item 1 C{\oe}ur dédié
 				\item 50 Go d'espace disque
 				\item 1 connexion au réseau CJB	
 \end{itemize} 
 
 \begin{center}
-\textbf{Cette configuration est hébergée sur le Poste de M.Deshayes}
+\textbf{Cette configuration est hébergée virtuellement}
 \end{center}
 \subsubsection{Installation}
-Lors de l'installation, j'ai tout laissé par défaut sauf le proxy qui à été renseigné. Suite à l'installation, j'ai eu à installer \textbf{openssh-server} pour tout faire via \textbf{PuTTY}.\\
+Lors de l'installation, il faut tout laissé par défaut sauf le proxy qui doit être renseigné. Suite à l'installation, il reste à installer \textbf{openssh-server} pour tout faire via \textbf{PuTTY} ou \textbf{SSH} .\\
 
-Depuis SSH, il fallait installer un serveur Web, un serveur BDD, PHP, Perl et leurs modules (\textbf{apache2, mylsql-server, php5, perl, libxml-simple-perl, libcompress-zlib-perl, libdbi-perl libdbd-mysql-perl,libapache-dbi-perl, libnet-ip-perl, libsoap-lite-perl}).\\ \\
+Depuis PuTTY ou SSH, il faut installer le serveur Web, le serveur BDD, PHP, Perl et leurs modules (\textbf{apache2, mylsql-server, php5, perl, libxml-simple-perl, libcompress-zlib-perl, libdbi-perl libdbd-mysql-perl,libapache-dbi-perl, libnet-ip-perl, libsoap-lite-perl}).\\ \\
 Pour les modules Perl en cas de problèmes de paquets, il faut les télécharger et les installer à la main depuis ce site \url{http://search.cpan.org/} 
 S'il manque des paquets, le script d'installation d'OCS Inventory les installera mais dans notre cas, on est derrière un proxy donc vaut mieux tout installer avant. \\
 
-Pour installer OCS Inventory NG, j'ai utilisé l'archive qui était sur le site et la documentation non à jour (cf.Références).
+Pour installer OCS Inventory NG, il faut utilisé l'archive qui était sur le site et la documentation qui n'est pas à jour (cf.Références).
 \newpage
 \section{Déploiement}
 \subsection{Principe de fonctionnement}
@@ -188,16 +188,16 @@ Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni
 \caption{Etape 6 - Log de déploiement}
 \end{figure}
 
-Après avoir tout bien fait, il suffit de lancer le déploiement pour qu'il installe l'agent OCS sur les Postes Clients. L'outil de déploiement peut déployer les Postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'opération sur 10 Postes maximum. \\ 
+Après avoir tout bien fait, il suffit de lancer le déploiement pour installer et executer l'agent OCS sur les Postes Clients. L'outil de déploiement peut déployer les Postes Clients 1 par 1 ou peut faire 10 connexions simultanées, c'est-à-dire qu'il va faire l'opération sur 10 Postes maximum. \\ 
 \textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU du poste Administrateur.}
 \newpage
 \subsubsection{Via GPO}
-Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les postes clients dès que l'utilisateur va se connecter avec son "login//Password" de l'AD. Suite à ça, l'agent va se déployer via un script mis au coeur de la GPO du Windows Server 2012.
+Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les postes clients dès que l'utilisateur va se connecter avec son "login//P@ssword" de l'AD. Suite à ça, l'agent va se déployer via un script mis au coeur de la GPO du Windows Server 2012.
 \\
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.7]{Script/DeploiementGPO1.PNG}
-\caption{Script de déploiment}
+\caption{Script de déploiement}
 \end{figure}
 
 Pour commencer, il faut faire le script qu'il faudra mettre sur l'Active Directory (\textbf{script inspiré de Philippe BEAUMONT}.\\
@@ -214,9 +214,9 @@ Ligne 27 - Ligne 30 : On "tue" le processus "OCSService" pour copier le fichier 
 Après que le script soit crée et mis sur le serveur, il reste à paramétrer la GPO en mettant le script dans \textbf{"Configuration ordinateur\textbackslash Stratégies\textbackslash  Paramètres Windows\textbackslash  Scripts (démarrage/arrêt)\textbackslash Démarrage"}
 \newpage
 \subsection{Interface Web OCS Inventory}
-Lors que l'agent est bien installé sur les Postes Clients, il doivent faire l'inventaire complet du poste et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
+Lors que l'agent est bien installé sur les Postes Clients, l'agent va faire l'inventaire complet du poste et envoyer automatiquement l'inventaire au serveur. Suite à ça, on peut se faire une idée sur les logiciels qu'on doit déployer ou non. \\
 
-En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Le nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
+En arrivant sur l'écran d'inventaire, on remarque les différentes informations sur les Postes Clients (TAG, Dernier Inventaire, Nom de l'ordinateur, L'utilisateur actuel, OS, Fréquences RAM / CPU) qui sont automatiquement inventoriés selon la configuration faite depuis le serveur.
 \subsection{Scripts}
 
 OCS Inventory peut déployer des paquets SEULEMENT s'ils sont en ".zip" ou ".tar.gz" donc avant de déployer un paquets, on va créer un script qui va lancer les installations des logiciels de manière silencieuse et avec des paramètres spécifiques.
@@ -227,7 +227,6 @@ Lors de l'installation des logiciels, il ne faut pas que cela perturbe le travai
 \newpage
 \textbf{On va prendre l'exemple de Mozilla Firefox avec le code disponible : (Définitions en Annexes)}
 \\
-
 \begin{lstlisting}[language=C]
 @echo off
 1	runas /noprofile /user:Administrateur install.bat < pass.txt
@@ -259,15 +258,24 @@ goto end
 \end{lstlisting}
 \begin{itemize}
 	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur sans charger le profil utilisateur, juste à avoir le privilège lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
-	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Références). 
+	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Annexes). 
 	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de Mozilla Firefox et de Mozilla Maintenance Service.
 	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de Mozilla Firefox en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tout les messages qui peuvent apparaitre et ne pas redémarrer
 	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script maison en PowerShell.
 	\item Ligne 21 - 22 : Faire de Mozilla Firefox le navigateur par défaut avec le paramètre
 \end{itemize}
 \newpage
-
-\subsection{Déploiement}
+\subsection{Phases de Tests}
+A chaque fois qu'un script est fait ou modifier, le script est testé en local puis sur un poste de test.\\
+\begin{itemize} 
+	\item Est-ce que les droits "administrateur" sont bien mis ? Si non, vérifier si le mot de passe est bon. 
+	\item Est-ce que le script désactive le service "U10Detect" ? Si non, vérifier si le service existe ou s'il est bien écrit dans le script
+	\item Est-ce que le script désinstalle le programme ? Si non, vérifier le répertoire où se trouve le programme de désinstallation.
+	\item Est-ce que le programme d'installation s'est bien exécuter en installant le programme ? Si non, essayer d'accéder au serveur de fichiers.
+	\item Est-ce que le script s'est déroulé de manière "silencieux" ? Si non, voir la syntaxe spécifique d'un fichier .EXE ou d'un Package .MSI. \\
+\end{itemize}
+Il faut regardé le fichier de log d'OCS dans "\textbf{\%PROGRAMDATA\%\textbackslash OCS Inventory NG \textbackslash Agent}" avec Notepad ou Notepad++ ou de voir dans \textbf{l'observateur d'événements}
+\subsection{Déploiement(s)}
 \subsubsection{Création}
 Après que le script soit fait, il reste à créer l'archive en ".zip" avec le fichier ".txt" qui contient le mot de passe et le script Batch. En général, l'archive fait moins de 5 Kilo-Octet. Quand l'archive à bien été faite, il y a plu qu'a créer la fiche du déploiement en se connectant sur l'interface Web d'OCS et aller dans "Deployment" puis "Build"
 \\
@@ -287,7 +295,7 @@ Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installe
 \end{figure}
 \newpage
 
-La page finale de création du paquet montre le poids du paquet, le nombre de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et le temps estimé pour le déploiement (qui affiche souvent rien)
+La page finale de création du paquet montre le poids du paquet, le nombre de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et le temps estimé pour le déploiement (qui affiche souvent rien ou le mauvais temps)
 
 \begin{figure}[hbtp]
 \centering
@@ -350,30 +358,6 @@ Suite à ça, dans le menu "Déployment" il faut ajouter le paquet crée précé
 \end{figure}
 
 C'est-à-dire que si on choisit "YES" et qu'après on choisit le paquet voulu, il demande la date et l'heure d'installation et en fin de déploiement, si on vent redémarrer ou éteindre le poste mais dans notre cas, il faut SURTOUT PAS le faire. Quand le paquet à été choisi, il y a plu qu'a retourner sur la page de déploiement du poste et voir qu'il y a le paquet qui est en attente. Le paquet sera déployer au prochain inventaire ou on peut le forcer en utilisant PSEXEC (en mode administrateur)
-\newpage
-
-\section{Résultat Final}
-Lorsque le déploiement est fini, il suffit de regarder dans la liste des programmes installés directement sur OCS ou de voir sur le poste client. Le déploiement peut rencontré des problèmes donc il faut pas hésité à aller voir dans \textbf{l'Observateur d'Evenements} car souvent, c'est un problème dû à "Windows Installer" qui n'a pas les droits requis pour l'installation alors qu'on démarre le script en utilisateur "Administrateur". En moyenne avec les paquets crées, le déploiement dure 10  minutes maximum. 
-\subsection{Problèmes rencontrés}
-Tout au long de ce stage en mettant en place le déploiement par OCS Inventory NG, j'ai eu quelques soucis que j'ai pu résoudre mais pas tous car pour certains, il fallait intervenir sur les Postes ou sinon c'était un service WINDOWS qui posait problème.
-\\
-\begin{itemize}
-\item Windows 7 bloque le déploiement des paquets à cause d'un service de "Détection de services interactifs".
-\item Mozilla Maintenance Service posait problème quand le service de "Détection de Services Interactifs" s'activer, il affichait une boite de dialogue à l'utilisateur.
-\item PDFCreator mettait son imprimante par défaut mais avec un import/export du registre pendant le script, l'imprimante d'origine se remet par défaut (en pratique au bureau informatique).
-\item  Adobe Reader se désinstalle mais ce réinstalle pas car il n'a pas les droits suffisants sur certains Postes (MSIInstaller en cause) !!!
-\item PDFCreator demande à faire redémarrer le PC.
-\item L'utilisation de PSEXEC va créer un dossier utilisateur sur l'ordinateur distant... Résolu avec un script qui force le déploiement de l'inventaire OCS et supprime le dossier utilisateur.
-\item Suite à la mise à jour de Firefox, les PDF s'ouvrent sur une nouvelle page au lieu d'un nouvelle onglet.
-\item A la suite du déploiement, les raccourcis .URL ne pointent plu vers le navigateur. Résolu par un script Powershell (Cf.Annexes)
-\end{itemize}
-
-\section{Conclusion}
-Durant les 8 semaines de stage, j'ai pu apprendre et travailler au sein d'une d'équipe sur un ensemble de Postes en mettant en place un système de déploiement qui servira (ou non) au fil du temps. En cherchant des solutions de déploiement, j'ai pu connaitre autre chose qu'OCS Inventory NG (Cf.Solutions).
-
-J'ai découvert aussi les contraintes qu'il pouvait y avoir en labo informatique et lors d'un déploiement réel sur le réseau du centre en rencontrant des problèmes résolus ou non.
-\newpage
-\section{Compétences Acquises}
 \newpage
 \section{Annexes}
 \subsection{Scripts}
@@ -441,7 +425,7 @@ Stop-Process -Name powershell
 \subsection{Définitions}
 \textbf{Microsoft Hyper-V :} Virtualisation de machines en ayant le service d'installer sur un Windows 8.x minimum, fonctionne à peu près comme VirtualBox
 \\ \\
-\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le serveur distant.
+\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le postes distant.
 \\ \\
 \textbf{RUNAS :} La commande RUNAS permet à un utilisateur d'exécuter des outils et des programmes spécifiques avec des autorisations différentes de celles attribuées à l'ouverture de session; par exemple, si vous désirez exécuter un programme nécessitant des droits d'Administrateur alors que vous n'êtes pas connecté en tant que tel.
 \\ \\

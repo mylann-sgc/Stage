@@ -142,7 +142,7 @@ Avant de faire le déploiement de logiciels sur le réseau, il faut installer l'
   \includegraphics[scale=0.5]{Script/2.jpg}
   \caption{Etape 2 - La configuration de l'outil de déploiement}
 \end{figure} 
-Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce faire, il faut utilisé le module PSEXEC (cf.Annexes) depuis le poste qui va déployer l'agent OCS. Il suffit de mettre le répertoire exacte du module précédemment télécharger depuis le site dans les options d'OCS Inventory NG Agent Deployment Tool. Quand c'est fait, il faut passer à \textbf{l'étape 3}. \\
+Dans notre cas, il faut déployer l'agent sur les Postes Clients mais pour ce faire, il faut utilisé le module \textbf{PSEXEC} (cf.Annexes) depuis le poste qui va déployer l'agent OCS. Il suffit de mettre le répertoire exacte du module précédemment télécharger depuis le site dans les options d'OCS Inventory NG Agent Deployment Tool. Quand c'est fait, il faut passer à \textbf{l'étape 3}. \\
 
 \begin{figure}[hbtp]
  \centering
@@ -177,7 +177,7 @@ Quand cette étape est faite en ayant bien vérifier avant, on passe à \textbf{
 \caption{Etape 5 - L'authentification}
 \end{figure}
 
-Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni en intervenant sur les Postes Clients, il faut renseigner les informations de connexion du compte "Administrateur" du domaine pour les Postes WINDOWS. Si les informations sont exactes, on lance le déploiement à l'étape 6.
+Pour permettre le déploiement de l'agent OCS SANS déranger les utilisateurs ni en intervenant sur les Postes Clients, il faut renseigner les informations de connexion du compte "Administrateur" du domaine pour les \textbf{Postes WINDOWS}. Si les informations sont exactes, on lance le déploiement à l'étape 6.
 
 \begin{figure}[hbtp]
 \centering
@@ -189,7 +189,7 @@ Après avoir tout bien fait, il suffit de lancer le déploiement pour installer 
 \textbf{ATTENTION ! En changeant le nombre de connexion simultanées, on augmente la charge du CPU du poste Administrateur.}
 \newpage
 \subsubsection{Via GPO}
-Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les postes clients dès que l'utilisateur va se connecter avec son "login//P@ssword" de l'AD. Suite à ça, l'agent va se déployer via un script mis au coeur de la GPO du Windows Server 2012.
+Le déploiement de l'agent OCS consiste à l'installer automatiquement sur les postes clients dès que l'utilisateur va se connecter avec son \textbf{login//P@ssword} de l'AD. Suite à ça, l'agent va se déployer via un script mis au coeur de la GPO du Windows Server 2012.
 \\
 \begin{figure}[hbtp]
 \centering
@@ -255,23 +255,24 @@ goto end
 \end{lstlisting}
 \begin{itemize}
 	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur sans charger le profil utilisateur, juste à avoir le privilège lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
-	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours SC (cf.Annexes). 
-	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de Mozilla Firefox et de Mozilla Maintenance Service.
-	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de Mozilla Firefox en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tout les messages qui peuvent apparaitre et ne pas redémarrer
-	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script maison en PowerShell.
-	\item Ligne 21 - 22 : Faire de Mozilla Firefox le navigateur par défaut avec le paramètre
+	\item Ligne 3 - 4: Il faut désactiver le services \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactiver, il faut arrêter le service en utilisant toujours \textbf{SC} (cf.Annexes). 
+	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de \textbf{Mozilla Firefox} et de \textbf{Mozilla Maintenance Service}.
+	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de \textbf{Mozilla Firefox} en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tout les messages qui peuvent apparaitre et ne pas redémarrer
+	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script fait en \textbf{PowerShell}.
+	\item Ligne 21 - 22 : Faire de \textbf{Mozilla Firefox} le navigateur par défaut avec le paramètre
 \end{itemize}
 \newpage
 \subsection{Phases de Tests}
 A chaque fois qu'un script est fait ou modifier, le script est testé en local puis sur un poste de test.\\
 \begin{itemize} 
-	\item Est-ce que les droits "administrateur" sont bien mis ? Si non, vérifier si le mot de passe est bon. 
-	\item Est-ce que le script désactive le service "U10Detect" ? Si non, vérifier si le service existe ou s'il est bien écrit dans le script
-	\item Est-ce que le script désinstalle le programme ? Si non, vérifier le répertoire où se trouve le programme de désinstallation.
-	\item Est-ce que le programme d'installation s'est bien exécuter en installant le programme ? Si non, essayer d'accéder au serveur de fichiers.
-	\item Est-ce que le script s'est déroulé de manière "silencieux" ? Si non, voir la syntaxe spécifique d'un fichier .EXE ou d'un Package .MSI. \\
+	\item Est-ce que les \textbf{droits "administrateur"} sont bien mis ? Si non, vérifier si le mot de passe est bon. 
+	\item Est-ce que le script désactive le \textbf{service "U10Detect"} ? Si non, vérifier si le service existe ou s'il est bien écrit dans le script
+	\item Est-ce que le script \textbf{désinstalle le programme} ? Si non, vérifier le répertoire où se trouve le programme de désinstallation.
+	\item Est-ce que le \textbf{programme d'installation} s'est bien exécuter en installant le programme ? Si non, essayer d'accéder au serveur de fichiers.
+	\item Est-ce que le \textbf{script} s'est déroulé de \textbf{manière "silencieux"} ? Si non, voir la syntaxe spécifique d'un fichier .EXE ou d'un Package .MSI. \\
 \end{itemize}
 Il faut regardé le fichier de log d'OCS dans "\textbf{\%PROGRAMDATA\%\textbackslash OCS Inventory NG \textbackslash Agent}" avec Notepad ou Notepad++ ou de voir dans \textbf{l'observateur d'événements}
+\newpage
 \subsection{Déploiement(s)}
 \subsubsection{Création}
 Après que le script soit fait, il reste à créer l'archive en ".zip" avec le fichier ".txt" qui contient le mot de passe et le script Batch. En général, l'archive fait moins de 5 Kilo-Octet. Quand l'archive à bien été faite, il y a plu qu'a créer la fiche du déploiement en se connectant sur l'interface Web d'OCS et aller dans "Deployment" puis "Build"
@@ -281,25 +282,23 @@ Après que le script soit fait, il reste à créer l'archive en ".zip" avec le f
 \includegraphics[scale=0.7]{Script/Deploiement1.PNG}
 \caption{Accès Creation Déploiement}
 \end{figure}
+Après avoir cliqué dessus, la page \textbf{"Package Builder"} s'ouvre en y montrant un liste à remplir
 
-Après avoir cliqué dessus, la page "Package Builder" s'ouvre en y montrant un liste à remplir
-
-Il faut renseigner le nom, la description du paquet, sur quel OS faut l'installer, le protocole (dans mon cas, j'ai pas mis en HTTPS), la priorité du déploiement (Chiffre le + haut est prioritaire), le fichier à déployer (mettre l'archive précédemment crée), exécuter ou non une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
+Il faut renseigner \textbf{le nom}, \textbf{la description du paquet}, sur quel \textbf{OS} faut l'installer, \textbf{le protocole} (dans mon cas, j'ai pas mis en HTTPS), \textbf{la priorité} du déploiement (Chiffre le + haut est prioritaire), \textbf{le fichier} à déployer (mettre l'archive précédemment crée), \textbf{exécuter ou non} une commande à l'extraction du package donc la c'est le nom du script Batch. Le reste n'est pas à renseigner car on a pas de serveur de redistribution et on veut pas que l'utilisateur soit averti.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.4]{Script/Deploiement2.PNG}
 \caption{Information Déploiement}
 \end{figure}
-\newpage
 
-La page finale de création du paquet montre le poids du paquet, le nombre de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et le temps estimé pour le déploiement (qui affiche souvent rien ou le mauvais temps)
+La page finale de création du paquet montre le \textbf{poids du paquet}, \textbf{le nombre} de fragment du paquets pour pas saturer le réseau lors du déploiement de gros paquet (c'est pas notre cas) et \textbf{le temps} estimé pour le déploiement (qui affiche souvent rien ou le mauvais temps)
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.6]{Script/Deploiement3.PNG}
 \caption{Résumé de création}
 \end{figure}
-
+\newpage
 Dès que la confirmation apparait, cela veut dire que le paquets est bien créer dans le répertoire "/var/lib/OCSinventory-reports/download/......". On peut voir que tout les paquets de déploiement crées appartienne à "www-data"
 
 \begin{figure}[hbtp]
@@ -316,7 +315,7 @@ Dès que la confirmation apparait, cela veut dire que le paquets est bien créer
 \newpage
 \subsubsection{Activation}
 
-Après avoir eu la confirmation de la création du paquet, il reste à l'activer pour pouvoir le déployer sur les Postes. Et pour ce faire, il faut faire la même opération de tout à l'heure mais cette fois, il faut cliquer sur "Activate"
+Après avoir eu la confirmation de la création du paquet, il reste à l'activer pour pouvoir le déployer sur les Postes. Et pour ce faire, il faut faire la même opération de tout à l'heure mais cette fois, il faut cliquer sur \textbf{"Activate"}
 
 \begin{figure}[hbtp]
 \centering
@@ -324,7 +323,7 @@ Après avoir eu la confirmation de la création du paquet, il reste à l'activer
 \caption{Accès Activation Paquet}
 \end{figure}
 
-Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant la liste des paquets disponibles pour le déploiement
+Après avoir cliqué dessus, la page \textbf{"Package Activation"} s'ouvre en y montrant la liste des paquets disponibles pour le déploiement
 
 \begin{figure}[hbtp]
 \centering
@@ -332,33 +331,33 @@ Après avoir cliqué dessus, la page "Package Activation" s'ouvre en y montrant 
 \caption{Accès Activation Paquet}
 \end{figure}
  
-Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affiché différemment, il apparait en "Noir" alors que les autres apparaissent en "Gris" car ils ont été activés et pas le nôtre. Pour ce faire, il faut sur la "Flèche en double sens" à droite de l'écran. Suite à ça, il demande confirmation pour l'activation et ensuite notre paquet devient "Grisé" comme les autres.
+Par rapport aux autres paquets déjà déployés, celui qu'on à crée est affiché différemment, \textbf{il apparait en "Noir"} alors que \textbf{les autres apparaissent en "Gris"} car ils ont été activés et pas le nôtre. Pour ce faire, il faut sur la "Flèche en double sens" à droite de l'écran. Suite à ça, il demande confirmation pour l'activation et ensuite notre \textbf{paquet devient "Grisé"} comme les autres.
 \newpage
 \subsubsection{Déploiement sur les postes}
-Après que les paquets soit crées et activés, il reste à les déployer sur les postes, pour cela, il suffit de retourner sur la liste d'ordinateur qui se trouve dans "All Computers" et à choisir le poste en cliquant sur le nom du poste...
+Après que les paquets soit crées et activés, il reste à les déployer sur les postes, pour cela, il suffit de retourner sur la liste d'ordinateur qui se trouve dans \textbf{"All Computers"} et à choisir le poste en cliquant sur le nom du poste...
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{Script/Act_Deploy1.PNG}
 \caption{Choix du poste}
 \end{figure}
 
-... et en vérifiant les logiciels déjà existants pour pas installer un logiciel inutile sur le poste en naviguant sur la fiche du poste puis dans l'onglet "Softwares" ou sinon pour un nouveau poste, il faut aller directement sur "Déployment".
+... et en vérifiant les logiciels déjà existants pour pas installer un logiciel inutile sur le poste en naviguant sur la fiche du poste puis dans l'onglet \textbf{"Softwares"} ou sinon pour un nouveau poste, il faut aller directement sur \textbf{"Déployment"}.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.41]{Script/Act_Deploy2.PNG}
 \end{figure}
-Suite à ça, dans le menu "Déployment" il faut ajouter le paquet crée précédemment pour le mettre en file d'attente et qui sera déployer lors du prochain inventaire du poste. Il suffit de cliquer sur le bouton "Add Package" puis choisir ou non les options avancées du déploiement.
+\\Suite à ça, dans le menu \textbf{"Déployment"} il faut ajouter le paquet crée précédemment pour le mettre en file d'attente et qui sera déployer lors du prochain inventaire du poste. Il suffit de cliquer sur le bouton \textbf{"Add Package"} puis choisir ou non les options avancées du déploiement.
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.4]{Script/Act_Deploy4.PNG}
 \caption{Options avancées}
 \end{figure}
 
-C'est-à-dire que si on choisit "YES" et qu'après on choisit le paquet voulu, il demande la date et l'heure d'installation et en fin de déploiement, si on vent redémarrer ou éteindre le poste mais dans notre cas, il faut SURTOUT PAS le faire. Quand le paquet à été choisi, il y a plu qu'a retourner sur la page de déploiement du poste et voir qu'il y a le paquet qui est en attente. Le paquet sera déployer au prochain inventaire ou on peut le forcer en utilisant PSEXEC (en mode administrateur)
+C'est-à-dire que si on choisit \textbf{"YES"} et qu'après on choisit le paquet voulu, il demande la \textbf{date et l'heure d'installatio}n et en fin de déploiement, si on veut \textbf{redémarrer ou éteindre} le poste mais dans notre cas, il faut \textbf{SURTOUT PAS} le faire. Quand le paquet à été choisi, il y a plu qu'a retourner sur la page de déploiement du poste et voir qu'il y a le paquet qui est en attente. Le paquet sera déployer au prochain inventaire ou on peut le forcer en utilisant \textbf{PSEXEC (en mode administrateur)}
 \newpage
 \section{Annexes}
 \subsection{Scripts}
-Script avec MSIEXEC (pour les package .msi).
+\textbf{Script avec MSIEXEC (pour les packages .msi).}
 \begin{lstlisting}[language=C]
 1 @echo off
 
@@ -399,7 +398,7 @@ En détail sur les lignes de désinstallation et d'installation : (Cf.Annexes) \
 \item Ligne 13 - 14 : Le package .MSI démarrera en mode silencieux et sans redémarrer comme indiquer avec les paramètres "/quiet" et "/norestart"
 \end{itemize}
 \newpage
-Script PowerShell pour changer les raccourcis Internet des Postes Clients
+\textbf{Script PowerShell pour changer les raccourcis Internet des Postes Clients}
 
 \begin{lstlisting}[language=C]
 
@@ -422,7 +421,7 @@ Stop-Process -Name powershell
 \subsection{Définitions}
 \textbf{Microsoft Hyper-V :} Virtualisation de machines en ayant le service d'installer sur un Windows 8.x minimum, fonctionne à peu près comme VirtualBox
 \\ \\
-\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batches, comme si vous étiez connecté sur le postes distant.
+\textbf{PSEXEC :} PsExec est un outil en ligne de commande. Il permet d’exécuter à distance des commandes, des programmes, des batch, comme si vous étiez connecté sur le postes distant.
 \\ \\
 \textbf{RUNAS :} La commande RUNAS permet à un utilisateur d'exécuter des outils et des programmes spécifiques avec des autorisations différentes de celles attribuées à l'ouverture de session; par exemple, si vous désirez exécuter un programme nécessitant des droits d'Administrateur alors que vous n'êtes pas connecté en tant que tel.
 \\ \\
