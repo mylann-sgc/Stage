@@ -59,7 +59,7 @@ Tout les Postes n'ont pas la même fonction donc il faut mettre à jour les logi
 
 \section{Solutions}
 \subsection{Comparaison}
-En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai recensé 4 solutions de déploiement mais dans notre contexte, il y a 2 solutions qui seront comparées car les 2 autres ne sont plus à jour. Il s'agissait de \textbf{WSUS Package Publisher} et de \textbf{Local Update Publisher} \\ \\
+En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai recensé 4 solutions de déploiement.\\ \\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{tabular}{|p{3.1cm}|p{6.5cm}|p{6.5cm}|}
 	\hline
@@ -91,7 +91,17 @@ En cherchant sur Internet et aussi avec mes connaissances personnelles, j'ai rec
 												\item Création de paquets + ou - complexe
 												\item Certains logiciels ne sont plus à jour			
 										\end{itemize} \\
-	\hline	
+	\hline
+		%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\centering WSUS Package Publisher  & \begin{itemize}
+							\item Utilise les packages .EXE et .MSI 
+							\item Cohabite avec WSUS en reprenant toute la BDD WSUS					
+							\item Déploiement des packages
+							\item Génère un certificat auto-signé en utilisant une GPO configurée
+									\end{itemize} & \begin{itemize}
+												\item  Si le WSUS est en panne, le déploiement n'est plus possible									
+										\end{itemize} \\
+	\hline
 \end{tabular}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \\ \\
