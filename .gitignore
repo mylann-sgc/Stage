@@ -4,3 +4,5 @@
 *.log
 Rapport.log
 *.log
+*.out
+*.aux
