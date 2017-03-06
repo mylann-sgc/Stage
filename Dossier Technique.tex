@@ -224,7 +224,6 @@ Lors de l'installation des logiciels, il ne faut pas que cela perturbe le travai
 \newpage
 \textbf{On va prendre l'exemple de Mozilla Firefox avec le code disponible : (Définitions en Annexes)}
 \\
-
 \begin{lstlisting}[language=C]
 @echo off
 1	runas /noprofile /user:Administrateur install.bat < pass.txt
@@ -263,7 +262,16 @@ goto end
 	\item Ligne 21 - 22 : Faire de Mozilla Firefox le navigateur par défaut avec le paramètre
 \end{itemize}
 \newpage
-
+\subsection{Phases de Tests}
+A chaque fois qu'un script est fait ou modifier, le script est testé en local puis sur un poste de test.\\
+\begin{itemize} 
+	\item Est-ce que les droits "administrateur" sont bien mis ? Si non, vérifier si le mot de passe est bon. 
+	\item Est-ce que le script désactive le service "U10Detect" ? Si non, vérifier si le service existe ou s'il est bien écrit dans le script
+	\item Est-ce que le script désinstalle le programme ? Si non, vérifier le répertoire où se trouve le programme de désinstallation.
+	\item Est-ce que le programme d'installation s'est bien exécuter en installant le programme ? Si non, essayer d'accéder au serveur de fichiers.
+	\item Est-ce que le script s'est déroulé de manière "silencieux" ? Si non, voir la syntaxe spécifique. \\
+\end{itemize}
+Il faut regardé le fichier de log d'OCS dans "\textbf{\%PROGRAMDATA\%\textbackslash OCS Inventory NG \textbackslash Agent}" avec Notepad ou Notepad++ ou de voir dans \textbf{l'observateur d'événements}
 \subsection{Déploiement(s)}
 \subsubsection{Création}
 Après que le script soit fait, il reste à créer l'archive en ".zip" avec le fichier ".txt" qui contient le mot de passe et le script Batch. En général, l'archive fait moins de 5 Kilo-Octet. Quand l'archive à bien été faite, il y a plu qu'a créer la fiche du déploiement en se connectant sur l'interface Web d'OCS et aller dans "Deployment" puis "Build"
