@@ -243,42 +243,19 @@ Lors de l'installation des logiciels, il ne faut pas que cela perturbe le travai
 \newpage
 \textbf{On va prendre l'exemple de Mozilla Firefox avec le code disponible : (Définitions en Annexes)}
 \\
-\begin{lstlisting}[language=C]
-@echo off
-1	runas /noprofile /user:Administrateur install.bat < pass.txt
-	
-3	sc config UI0Detect start= disabled
-4	sc stop UI0Detect
-
-6	"C:\Program Files (x86)\Mozilla Maintenance Service\Uninstall.exe" 
-7	/verysilent /SUPPRESSMSGBOXES /NORESTART
-	
-9	"C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe" 
-10	/verysilent /SUPPRESSMSGBOXES /NORESTART
-	
-11	"C:\Program Files\Mozilla Firefox\uninstall\helper.exe" 
-12	/verysilent /SUPPRESSMSGBOXES /NORESTART	
-
-14	"\\ficserv\allusers\Logiciels\firefox\Firefox Setup 51.0.1.exe" 
-15	/INI=\\ficserv\allusers\Logiciels\firefox\config.ini 
-16	/verysilent /SUPPRESSMSGBOXES /NORESTART
-	
-18	powershell -executionpolicy Bypass -file "\\192.168.10.28\allusers
-19	\Logiciels\01 - Install Mat\Script\Firefox\Firefox.ps1"	
-	
-21	"%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" 
-22	/SetAsDefaultAppUser
-	
-goto end
-:end	
-\end{lstlisting}
+\begin{figure}[hbtp]
+ \centering
+ \includegraphics[scale=0.84]{Script/Firefox_annexes.PNG}
+ \end{figure}  
 \begin{itemize}
-	\item Ligne 1 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur sans charger le profil utilisateur, juste à avoir le privilège lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
-	\item Ligne 3 - 4: Il faut désactiver le service \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran car  même en voulant faire une installation silencieuse, il y a toujours des programme qui se lance mais sans option silencieuse donc vaut mieux le désactiver. Après l'avoir désactivé, il faut arrêter le service en utilisant toujours \textbf{SC} (cf.Annexes). 
-	\item Ligne 6 - 12 : Répertoire où se trouve le programme de désinstallation de \textbf{Mozilla Firefox} et de \textbf{Mozilla Maintenance Service}.
-	\item Ligne 14 - 16 : Répertoire où se trouve le programme de d'installation de \textbf{Mozilla Firefox} en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tous les messages qui peuvent apparaitre et ne pas redémarrer
-	\item Ligne 18 - 19 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script fait en \textbf{PowerShell}.
-	\item Ligne 21 - 22 : Faire de \textbf{Mozilla Firefox} le navigateur par défaut avec le paramètre
+	\item Ligne 3 : Avec la commande \textbf{RUNAS}, on se connecte en tant qu'Administrateur sans charger le profil utilisateur, juste à avoir le privilège lors de l'exécution de ce script et pour pas à avoir à taper le mot de passe, le script utilise le fichier "pass.txt" qui contient le mot de passe en clair.
+	\item Ligne 5 - 7: Il faut désactiver le service \textbf{U10Detect} (cf.Annexes) pour que rien n'apparaisse à l'écran. 
+	\item Ligne 9 - 15 : Répertoire où se trouve le programme de désinstallation de \textbf{Mozilla Firefox} et de \textbf{Mozilla Maintenance Service}.
+	\item Ligne 17 - 21 : Répertoire où se trouve le programme de d'installation de \textbf{Mozilla Firefox} en utilisant son fichier de configuration (Répertoire d'installation du Poste Client, Mettre ou non raccourcis sur le bureau ou la barre de lancement ou dans le menu démarrer, la désactivation du Maintenance Service). Faire l'installation silencieuse, supprimer tous les messages qui peuvent apparaitre et ne pas redémarrer
+	\item Ligne 25 - 25 : Récupérer une icône car l'ancienne ne fonctionnera plu (Cf.Problèmes rencontrés) en utilisant un script fait en \textbf{PowerShell}.
+	\item Ligne 27 - 30 : Changement du canal de mise à jour de \textbf{Mozilla Firefox} pour pas qu'il puisse les faire.
+	\item Ligne 32 - 33 : Faire de \textbf{Mozilla Firefox} le navigateur par défaut avec le paramètre
+	\item Ligne 35 - 37 : Réactivation du Service de Détection de services interactifs en restant éteint
 \end{itemize}
 \newpage
 \subsection{Phases de Tests}
@@ -378,60 +355,24 @@ C'est-à-dire que si on choisit \textbf{"YES"} et qu'après on choisit le paquet
 \section{Annexes}
 \subsection{Scripts}
 \textbf{Script avec MSIEXEC (pour les packages .msi).}
-\begin{lstlisting}[language=C]
-1 @echo off
-
-3	runas /noprofile /user:Administrateur install.bat < pass.txt
-
-5 Desactivation du service de Detection de services interactifs
-6	sc config UI0Detect start= disabled
-7	sc stop UI0Detect
-
-9 Desinstallation de Flash Player (tous modules)
-10	"\\ficserv\allusers\Logiciels\flash player\
-11	uninstall_flash_player.exe" -uninstall
-
-13 Installation de Flash Player
-14	msiexec /i "\\ficserv\allusers\Logiciels\
-15	flash player\install_flash_player_24_active_x.msi" /quiet /norestart
-	
-17	msiexec /i "\\ficserv\allusers\Logiciels\
-18	flash player\install_flash_player_24_plugin.msi" /quiet /norestart
-
-20 Fichier de Configuration d'Adobe Flash 
-21	xcopy "\\ficserv\allusers\Logiciels\
-22	flash player\mms.cfg" /Y C:\windows\syswow64\macromed\flash\ 
-
-24 Reactivation du Service de Detection de services interactifs
-25	sc config UI0Detect start= demand
-26	sc stop UI0Detect
-
-28 goto end
-29 :end
-\end{lstlisting}
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.9]{Script/Flash.PNG}
+\end{figure}
 
 Le script est à peu près le même que pour celui de Mozilla Firefox crée précédemment sauf que cette fois, il s'agit d'un package .MSI.\\
 En détail sur les lignes de désinstallation et d'installation : (Cf.Annexes) \\
 \begin{itemize}
 \item Ligne 10 : L'exécutable .exe permet de supprimer TOUTES les versions d'Adobe Flash Player présente sur 			l'ordinateur de manière silencieuse vu qu'on lui ajoute le paramètre "-uninstall" \\
 
-\item Ligne 13 - 14 : Le package .MSI démarrera en mode silencieux et sans redémarrer comme indiquer avec les paramètres "/quiet" et "/norestart"
+\item Ligne 12 - 16 : Le package .MSI démarrera en mode silencieux et sans redémarrer comme indiquer avec les paramètres "/quiet" et "/norestart"
 \end{itemize}
 \newpage
 \textbf{Script PowerShell pour changer les raccourcis Internet des Postes Clients}
-
-\begin{lstlisting}[language=C]
-
-$ProfilesDirectory = (get-itemproperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\
-CurrentVersion\ProfileList" -Name ProfilesDirectory).ProfilesDirectory
-
-Get-ChildItem -Path $ProfilesDirectory -filter DMC.lnk 
--recurse -Force | foreach ($_) {Remove-Item $_.FullName ; Copy-Item -Path
- \\ficserv\allusers\dmc\DMC.lnk -Destination $_.DirectoryName}
-
-Stop-Process -Name powershell
-
-\end{lstlisting}
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.6]{Script/Powershell.PNG}
+\end{figure}
 \textbf{Commentaires :}\\
 \begin{itemize}
 \item \textbf{Variable \$ProfileDirectory :} Récupère à partir du registre, les répertoires Utilisateurs existants dans le Disque Local C: 
