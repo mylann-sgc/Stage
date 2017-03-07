@@ -7,7 +7,7 @@
 \contentsline {subsubsection}{\numberline {3.2.1}Techniques}{3}{subsubsection.3.2.1}
 \contentsline {subsubsection}{\numberline {3.2.2}\IeC {\'E}conomiques}{3}{subsubsection.3.2.2}
 \contentsline {subsubsection}{\numberline {3.2.3}Humaines}{3}{subsubsection.3.2.3}
-\contentsline {subsection}{\numberline {3.3}Mat\IeC {\'e}riels disponible}{3}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.3}Mat\IeC {\'e}riels disponibles}{3}{subsection.3.3}
 \contentsline {section}{\numberline {4}Solutions}{4}{section.4}
 \contentsline {subsection}{\numberline {4.1}Comparaison}{4}{subsection.4.1}
 \contentsline {subsection}{\numberline {4.2}Mise en \oe {}uvre}{5}{subsection.4.2}
@@ -21,11 +21,11 @@
 \contentsline {subsection}{\numberline {5.3}Interface Web OCS Inventory}{11}{subsection.5.3}
 \contentsline {subsection}{\numberline {5.4}Scripts}{11}{subsection.5.4}
 \contentsline {subsection}{\numberline {5.5}Phases de Tests}{13}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}D\IeC {\'e}ploiement(s)}{13}{subsection.5.6}
-\contentsline {subsubsection}{\numberline {5.6.1}Cr\IeC {\'e}ation}{13}{subsubsection.5.6.1}
-\contentsline {subsubsection}{\numberline {5.6.2}Activation}{15}{subsubsection.5.6.2}
-\contentsline {subsubsection}{\numberline {5.6.3}D\IeC {\'e}ploiement sur les postes}{16}{subsubsection.5.6.3}
-\contentsline {section}{\numberline {6}Annexes}{17}{section.6}
-\contentsline {subsection}{\numberline {6.1}Scripts}{17}{subsection.6.1}
+\contentsline {subsection}{\numberline {5.6}D\IeC {\'e}ploiement(s)}{14}{subsection.5.6}
+\contentsline {subsubsection}{\numberline {5.6.1}Cr\IeC {\'e}ation}{14}{subsubsection.5.6.1}
+\contentsline {subsubsection}{\numberline {5.6.2}Activation}{16}{subsubsection.5.6.2}
+\contentsline {subsubsection}{\numberline {5.6.3}D\IeC {\'e}ploiement sur les postes}{17}{subsubsection.5.6.3}
+\contentsline {section}{\numberline {6}Annexes}{18}{section.6}
+\contentsline {subsection}{\numberline {6.1}Scripts}{18}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}D\IeC {\'e}finitions}{19}{subsection.6.2}
 \contentsline {section}{\numberline {7}R\IeC {\'e}f\IeC {\'e}rences}{20}{section.7}
