@@ -1,2 +1,2 @@
 # Stage
-Dossier de Stage comprenant le Rapport de stage ainsi que la Documentation Technique 
+Projet de stage pour un déploiement de logiciel avec OCS Inventory NG 
